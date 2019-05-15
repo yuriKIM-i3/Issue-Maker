@@ -1,6 +1,33 @@
-### Issue-Maker ###
+### このPRですべきこと
+- [ ]
+- [ ]
 
-1. 개발환경
-	* VMbox의 가상머신에서 Linux Centos7을 구현
-	* 기본설정은 vagrant 이용
-	* ssh를 이용한 vagrant접속
+### このPRが処理するissue
+https://github.com/crane93/Issue-Maker/issues/
+
+### 説明
+
+### ステータス
+**READY/IN DEVELOPMENT/HOLD/END**
+
+### 結果イメージ
+
+### 係わったPRｓ
+
+---
+### 이 PR에서 할 일
+- [ ]
+- [ ]
+
+### 이 PR 처리하는 issue
+https://github.com/crane93/Issue-Maker/issues/
+
+### 설명
+
+
+### 진행상황
+**READY/IN DEVELOPMENT/HOLD/END**
+
+### 구현이미지
+
+### 연관된 PRs
