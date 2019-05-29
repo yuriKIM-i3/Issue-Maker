@@ -1,31 +1,25 @@
-/*
 package hello;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
+    @Autowired
+    private CityMapper cityMapper;
+
+    @Autowired
+    private SqlSession sqlSession;
+
     @RequestMapping("/")
     public String index() {
+        City city1 = cityMapper.findByState("CA");
+        City city2 = sqlSession.selectOne("hello.CityMapper.findByState", "CA");
+        System.out.println(city1);
+        System.out.println(city2);
         return "Greetings from Spring Boot!";
-    }
-
-}
-*/
-package hello;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-@RequestMapping("/hello")
-public class HelloController {
-
-    @GetMapping
-    public String hello() {
-        return "hello";
     }
 }
