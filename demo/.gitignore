@@ -1,12 +1,8 @@
 # Ignore Gradle project-specific cache directory
 
-# Ignore Gradle build output directory
-build
-
+### Gradle ###
 .gradle
-!build.gradle
-
-/build/
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -18,6 +14,12 @@ gradle-app.setting
 .gradletasknamecache
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+!build.gradle
+
 
 .bat
 
