@@ -10,19 +10,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <title>Issue Maker</title>
   </head>
   <body class="wrap">
     <header> 
       <nav class="navbar header">
-        <a class="navbar-brand font_C_white" href="../index.html">Issue Maker</a>            
+        <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="../Issue/IssueList.html">이슈목록</a>                  
+            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue_list">이슈목록</a>                  
           </li>
           <li class="nav-item">
-            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="../MyPage/MyPage.html">내정보</a>                  
+            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/myPage">내정보</a>                  
           </li>
           <li class="nav-item">                  
             <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="#">로그아웃</a>  
@@ -37,16 +37,16 @@
           <h1 class="text-center">New Issue</h1>
         </div>
       </div>
-      <form>
+      <form action="/writeProc" method="POST">
         <div class="row justify-content-center my-2">
           <div class="col-8">
-            <input type="text" class="form-control form-control-lg" placeholder="이슈제목을 입력">
+            <input type="text" class="form-control form-control-lg" name="title" placeholder="이슈제목을 입력">
           </div>
         </div>        
         <div class="row justify-content-center my-2">
           <div class="col-8">            
             <div class="form-group">            
-              <textarea class="form-control overflow-auto" rows="13" placeholder="이슈내용을 입력"></textarea>
+              <textarea class="form-control overflow-auto" rows="13" name="content" placeholder="이슈내용을 입력"></textarea>
             </div>
           </div>
         </div>
@@ -160,8 +160,8 @@
                         이슈작성을 취소하겠습니까
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
-                        <button type="button" class="btn btn-outline-secondary">No</button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='/issue_list'">Yes</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
                       </div>
                     </div>
                   </div>

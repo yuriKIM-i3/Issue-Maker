@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-dark">로그인</button>
               </div>
               <div class="col-4 text-center">
-                <button type="submit" class="btn btn-dark">회원가입</button>
+                <button type="button" class="btn btn-dark">회원가입</button>
               </div>
             </div>    
           </form>

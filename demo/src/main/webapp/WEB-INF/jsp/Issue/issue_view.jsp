@@ -19,6 +19,9 @@
                 <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
+                        <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue_list">이슈목록</a>                  
+                    </li>
+                    <li class="nav-item">
                         <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/MyPage">내정보</a>                  
                     </li>
                     <li class="nav-item">                  
@@ -32,7 +35,7 @@
             <div class="title">
                 <div class="row py-2">
                     <div class="col-8">
-                        <h3>이슈제목이슈제목이슈제목이슈제목이슈제목</h3>
+                        <h3>${issue_view.title}</h3>
                     </div>
                     <div class="col-1 pt-2">
                         <button type="button" class="badge badge-secondary">수정</button>
@@ -51,14 +54,14 @@
                 </div>
                 <div class="row">
                     <div class="col-2">
-                        <span class="badge badge-light">Open</span>
+                        <span class="badge badge-light">${issue_view.status}</span>
                         <span class="badge badge-dark">Close</span>
                     </div>
                     <div class="col-2">
                         <h6>학녀</h6>
                     </div>
                     <div class="col-2">
-                        <h6><time>1993-08-27 17:30</time></h6>
+                        <h6>${issue_view.create_at.substring(0,10)}</h6>
                     </div>
                 </div>
             </div>
@@ -69,8 +72,8 @@
                      </div>                  
                     <div class="col-8 issue_content">
                         <div class="form-group">            
-                            <textarea class="form-control overflow-auto" rows="12">This is some text within a card body.
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+                            <textarea class="form-control overflow-auto" rows="12">
+                            ${issue_view.content}
                             </textarea>
                         </div>
                     </div>
@@ -228,9 +231,9 @@
                     </div>
                 </div>
                 <div class="col-3 text-right pt-3">                    
-                    <button type="button" class="badge badge-dark" data-toggle="modal" data-target="#confirmDelete">delete Issue</button>                    
+                    <button type="button" class="badge badge-dark" href="/issue_delete/${issue_view.id}" data-toggle="modal" data-target="#confirmDelete">delete Issue</button>                    
                 </div>
-                <!-- Modal -->
+                <!-- Modal -->                
                 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -245,12 +248,13 @@
                                 (삭제 후 되돌릴 수 없습니다.)
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
-                                <button type="button" class="btn btn-outline-secondary">No</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/issue_delete/${issue_view.id}'">Yes</button>
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </form>          
         </div>

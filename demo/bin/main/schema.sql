@@ -1,7 +1,0 @@
-DROP TABLE IF EXISTS city;
-CREATE TABLE city (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255),
-    state VARCHAR(255),
-    country VARCHAR(255)
-); 

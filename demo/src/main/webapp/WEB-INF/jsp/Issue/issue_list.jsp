@@ -127,129 +127,37 @@
                         </div>
                     </div>
                 </div>
+
+<!--이슈 리스트-->
                 <div class="row">
                     <div class="col">
                         <div class="alert alert-light" role="alert" style="height: 900px">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-light border-bottom h-75" role="alert">
-                                        <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <h5><span class="badge badge-light">open</span></h5>
-                                            </div>
-                                            <div class="col-5">
-                                                <a href="/issue_view" class="alert-link">이슈제목</a>
-                                            </div>
-                                            <div class="col-3">
-                                                라벨자리
-                                            </div>
-                                            <div class="col-2">
-                                                담당자들자리
-                                            </div>
-                                            <div class="col-1">
-                                                댓글수
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-light border-bottom h-75" role="alert">
-                                        <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <h5><span class="badge badge-light">open</span></h5>
-                                            </div>
-                                            <div class="col-5">
-                                                <a href="#" class="alert-link">이슈제목</a>
-                                            </div>
-                                            <div class="col-3">
-                                                라벨자리
-                                            </div>
-                                            <div class="col-2">
-                                                담당자들자리
-                                            </div>
-                                            <div class="col-1">
-                                                댓글수
+                            <c:forEach var="list" items="${list}">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="alert alert-light border-bottom h-75" role="alert">
+                                            <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <h5><span class="badge badge-light">${list.status}</span></h5>
+                                                </div>
+                                                <div class="col-5">
+                                                    <a href="/issue_view/${list.id}" class="alert-link">${list.title}</a>
+                                                </div>
+                                                <div class="col-3">
+                                                    라벨자리
+                                                </div>
+                                                <div class="col-2">
+                                                    담당자들자리
+                                                </div>
+                                                <div class="col-1">
+                                                    댓글수
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>  
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-light border-bottom h-75" role="alert">
-                                        <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <h5><span class="badge badge-dark">close</span></h5>
-                                            </div>
-                                            <div class="col-5">
-                                                <a href="#" class="alert-link">이슈제목</a>
-                                            </div>
-                                            <div class="col-3">
-                                                라벨자리
-                                            </div>
-                                            <div class="col-2">
-                                                담당자들자리
-                                            </div>
-                                            <div class="col-1">
-                                                댓글수
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>   
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-light border-bottom h-75" role="alert">
-                                        <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <h5><span class="badge badge-dark">close</span></h5>
-                                            </div>
-                                            <div class="col-5">
-                                                <a href="#" class="alert-link">이슈제목</a>
-                                            </div>
-                                            <div class="col-3">
-                                                라벨자리
-                                            </div>
-                                            <div class="col-2">
-                                                담당자들자리
-                                            </div>
-                                            <div class="col-1">
-                                                댓글수
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>   
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-light border-bottom h-75" role="alert">
-                                        <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <h5><span class="badge badge-dark">close</span></h5>
-                                            </div>
-                                            <div class="col-5">
-                                                <a href="#" class="alert-link">이슈제목</a>
-                                            </div>
-                                            <div class="col-3">
-                                                라벨자리
-                                            </div>
-                                            <div class="col-2">
-                                                담당자들자리
-                                            </div>
-                                            <div class="col-1">
-                                                댓글수
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
+                                </div>                                                             
+                            </c:forEach>                                
                         </div>
                     </div>
                 </div>
