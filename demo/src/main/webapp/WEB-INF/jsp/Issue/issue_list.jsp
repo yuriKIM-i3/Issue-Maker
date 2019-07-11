@@ -41,7 +41,7 @@
                         <div class="col-6">
                             <div class="row pt-2">           
                                 <div class="col-10">
-                                    <input class="form-control" type="text" id="searchIssue" placeholder="이슈제목으로검색">
+                                    <input class="form-control" type="text" id="searchIssue" name="keyword_title" placeholder="이슈제목으로검색">
                                 </div>
                                 <div class="col-2 pt-1">
                                     <button type="submit" class="btn btn-secondary btn-sm">검색</button>
@@ -161,6 +161,62 @@
                         </div>
                     </div>
                 </div>
+
+                <select name="contentnum" id="contentnum">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+                <table>
+                    <thead>
+                        <th></th>
+                    </thead>
+                </table>
+                <tbody>
+                    <c:forEach var="k" items="${list}">
+                        <tr>
+                            <td>${k.id}</td>
+                            <td>${k.title}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <c:if test="${page.prev}">
+                                <a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
+                            </c:if>
+                            <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+                                <a href="javascript:page(${idx});">${idx}</a>
+                            </c:forEach>
+                            <c:if test="${page.next}">
+                                    <a href="javascript:page(${page.getEndPage()-1});">&laquo;</a>
+                            </c:if>
+                        </td>
+                    </tr>
+                </tfoot>
+                <!--<div class="row justify-content-center">
+                    <div class="col-2">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    -->
+                </div>>
             </div>
         </div>
     <footer class="page-footer font-small blue pt-4">
@@ -169,4 +225,11 @@
         </div> 
     </footer>
   </body>
+  <script>
+      fuction page(idx){
+          var pagenum = idx;
+          var contentnum = $("#contentnum option:selected").val();
+          location.href="${issue_list}"
+      }
+  </script>
 </html>

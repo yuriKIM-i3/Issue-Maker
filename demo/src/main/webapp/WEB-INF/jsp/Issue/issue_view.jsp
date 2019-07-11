@@ -43,7 +43,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-2">
-                        이슈상태
+                        이슈상태   ${issue_view.viewcount}
                     </div>
                     <div class="col-2">
                         이슈작성자

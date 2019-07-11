@@ -15,7 +15,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() throws Exception{
-        System.out.println(issue.issueCount());
         return "index";
     }
 
