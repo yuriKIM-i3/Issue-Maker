@@ -25,10 +25,10 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         return new BCryptPasswordEncoder();
     }
 
-    // @Bean
-    // public AuthenticationSuccessHandler successHandler() {
-    //     return new CustomLoginSuccessHandler("/index2");
-    // }
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new CustomLoginSuccessHandler("/home");
+    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -43,8 +43,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
             .authorizeRequests().anyRequest().authenticated()
             .and()
             .formLogin()
-            // .loginPage("/login")
-            // .successHandler(successHandler())
+            .loginPage("/login")
+            .successHandler(successHandler())
             .permitAll();
     }
 

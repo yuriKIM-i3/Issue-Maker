@@ -7,19 +7,9 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class AppController {
-    @RequestMapping("/")
-    public String root() {
-        return "root";
-    }
-
-    @RequestMapping("/index")
+    @RequestMapping("/home")
     public String index() {
-        return "index";
-    }
-
-    @RequestMapping("/index2")
-    public String index2() {
-        return "index2";
+        return "home";
     }
 
     @RequestMapping("/login")
