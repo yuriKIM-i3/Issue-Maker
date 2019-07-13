@@ -4,4 +4,4 @@
   <select id="findByState" resultType="hello.City">
     SELECT * FROM city WHERE state = #{state}
   </select>
-</mapper>
+</mapper> 
