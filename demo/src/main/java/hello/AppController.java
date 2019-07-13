@@ -5,9 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 
-import hello.UserMapper;
-import hello.Member;
-
 @Controller
 public class AppController {
     @RequestMapping("/")
