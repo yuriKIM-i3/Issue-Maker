@@ -20,14 +20,14 @@
       <div class="row justify-content-center">
         <div class="col-5 p-3 bg-secondary text-white rounded mt-5">
           <h1 class="text-center mt-2">Issue Maker</h1>
-          <form>
+          <form method="POST" action="/login">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">      
+              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">      
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -35,10 +35,10 @@
             </div>
             <div class="row justify-content-center">
               <div class="col-4 text-center">
-                <button type="submit" class="btn btn-dark">로그인</button>
+                <button type="submit" class="btn btn-dark">login</button>
               </div>
               <div class="col-4 text-center">
-                <button type="submit" class="btn btn-dark">회원가입</button>
+                <a href="/signUp" type="button" class="btn btn-dark">Sign Up</a>
               </div>
             </div>    
           </form>

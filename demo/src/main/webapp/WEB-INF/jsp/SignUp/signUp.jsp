@@ -26,13 +26,13 @@
             <div class="row justify-content-center">
                 <div class="col-5 pt-4 bg-secondary text-white rounded mt-5">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form>
+                    <form action="/signUpProc" method="post">
                         <div class="row my-3 pl-5">
                             <div class="col-3">
                                 <label for="email">Email</label>
                             </div>
                             <div class="col-6">
-                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                <input type="email" name="username" class="form-control" id="email" placeholder="name@example.com">
                             </div>
                             <div class="col-2 text-center">
                                 <button type="button" class="btn btn-dark">Check</button>
@@ -43,7 +43,7 @@
                                 <label for="name">Name</label>
                             </div>
                             <div class="col-6">
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" name="name" class="form-control" id="name">
                             </div>
                             <div class="col-2 text-center">
                                 <button type="button" class="btn btn-dark">Check</button>
@@ -51,16 +51,16 @@
                         </div>
                         <div class="row my-3 pl-5">
                             <div class="col-3">
-                                <label for="password">비밀번호</label>
+                                <label for="password">password</label>
                             </div>
                             <div class="col-6">
-                                <input type="password" class="form-control" id="password" placeholder="10자이상">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="10자이상">
                             </div>
                             <div class="col-2"></div>
                         </div>
                         <div class="row my-3 pl-5">
                             <div class="col-3">
-                                <label for="passwordCheck">비밀번호 확인</label>
+                                <label for="passwordCheck">passwordCheck</label>
                             </div>
                             <div class="col-6">
                                 <input type="password" class="form-control" id="passwordCheck">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="row my-3 justify-content-center">
                             <div class="col-3 text-center">
-                                <button type="submit" class="btn btn-dark">가입하기</button>
+                                <button type="submit" class="btn btn-dark">Sign Up</button>
                             </div>
                         </div>
                     </form> 
