@@ -19,10 +19,10 @@
                 <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/myPage">내정보</a>                  
+                        <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/myPage">내정보</a>                  
                     </li>
                     <li class="nav-item">                  
-                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="#">로그아웃</a>  
+                        <a href="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/logout") %>" class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3">로그아웃</a>  
                     </li>
                 </ul>           
             </nav>

@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-dark">login</button>
               </div>
               <div class="col-4 text-center">
-                <a href="/signUp" type="button" class="btn btn-dark">Sign Up</a>
+                <a href="/signUp" role="button" class="btn btn-dark">Sign Up</a>
               </div>
             </div>    
           </form>

@@ -26,7 +26,7 @@
             <div class="row justify-content-center">
                 <div class="col-5 pt-4 bg-secondary text-white rounded mt-5">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form action="/signUpProc" method="post">
+                    <form action="/signUpOk" method="post">
                         <div class="row my-3 pl-5">
                             <div class="col-3">
                                 <label for="email">Email</label>

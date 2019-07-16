@@ -34,6 +34,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         return new CustomLoginSuccessHandler("/issue_list");
     }
 
+    // 스프링 시큐리티의 필터 연결을 설정하기 위한 오버라이딩이다.
     @Override           //자원에 대한 접근은 풀어주기
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
@@ -41,17 +42,28 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         );
     }
     
+    // 인터셉터로 요청을 안전하게 보호하는 방법을 설정하기 위한 오버라이딩이다.
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // http.authorizeRequests()
+		// 	.antMatchers("/**").permitAll();
         http.csrf().disable()
-        .authorizeRequests().anyRequest().authenticated()
+        // .authorizeRequests().anyRequest().authenticated()
+            .authorizeRequests()
+            .antMatchers("/", "/home", "/signUp").permitAll()
         .and()
+        // http
+        //     .authorizeRequests()
+        //     .antMatchers("/", "/home", "/signUp").permitAll()
+        //     .anyRequest().authenticated()
+        //     .and()
         .formLogin()
         .loginPage("/login")
         .successHandler(successHandler())
         .permitAll();
     }
  
+    //사용자 세부 서비스를 설정하기 위한 오버라이딩이다.
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());

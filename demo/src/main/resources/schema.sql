@@ -9,10 +9,7 @@ CREATE TABLE user (
     isAccountNonLocked TINYINT(1) NULL DEFAULT NULL,
     isCredentialsNonExpired TINYINT(1) NULL DEFAULT NULL,
     isEnabled TINYINT(1) NULL DEFAULT NULL
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
+);
 
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (

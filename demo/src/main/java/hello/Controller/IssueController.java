@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IssueController{
     @RequestMapping("/issue_list")
     public String issue_list(){
+        System.out.print("로그인성공");
         return "Issue/issue_list";
     }
 
