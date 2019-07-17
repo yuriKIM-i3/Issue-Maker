@@ -1,12 +1,12 @@
-package hello.Controller;
+package hello.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LabelsController{
-    @RequestMapping("/labels")
+public class MyPageController{
+    @RequestMapping("/myPage")
     public String labels(){
-        return "Labels/labels";
+        return "MyPage/myPage";
     }
 }

@@ -5,14 +5,13 @@ CREATE TABLE user (
     username VARCHAR(255) NULL DEFAULT NULL,
     name VARCHAR(20) NULL DEFAULT NULL,
     password VARCHAR(500) NULL DEFAULT NULL,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	update_at DATETIME,
     isAccountNonExpired TINYINT(1) NULL DEFAULT NULL,
     isAccountNonLocked TINYINT(1) NULL DEFAULT NULL,
     isCredentialsNonExpired TINYINT(1) NULL DEFAULT NULL,
     isEnabled TINYINT(1) NULL DEFAULT NULL
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
+);
 
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (

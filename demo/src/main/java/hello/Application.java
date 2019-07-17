@@ -7,14 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import hello.UserMapper;
-import hello.Member;
+import hello.domain.Account;
+import hello.mapper.LoginMapper;
 
 @SpringBootApplication
 @MapperScan(basePackages = "hello")
 public class Application implements CommandLineRunner {
     @Autowired
-    private UserMapper userMapper;
+    private LoginMapper loginMapper;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -25,13 +25,13 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Member member = new Member();
-        member.setUsername("user3");
-        member.setPassword(passwordEncoder.encode("password"));
-		   member.setName("안보여");
-        userMapper.insertUser(member);
+        Account account = new Account();
+        account.setUsername("user3");
+        account.setPassword(passwordEncoder.encode("password"));
+		account.setName("안보여");
+        loginMapper.insertUser(account);
         
         System.out.println("inserted");
-        System.out.println(userMapper.readUser("user3").getPassword());
+        System.out.println(loginMapper.readUser("user3").getPassword());
     }
 }
