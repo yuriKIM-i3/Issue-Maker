@@ -7,8 +7,6 @@
     <title>Home</title>
 </head>
 <body>
-    Home
-
-    <a href="/logout" Type="button">로그아웃</a>
-</body>
+    로그아웃
+    </body>
 </html>
