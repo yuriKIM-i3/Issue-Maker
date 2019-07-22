@@ -1,4 +1,4 @@
-package hello.service.login;
+package hello.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import hello.service.login.CustomUserDetailsService;
-import hello.service.login.CustomLoginSuccessHandler;
+import hello.service.user.CustomUserDetailsService;
+import hello.service.user.CustomLoginSuccessHandler;
  
 @EnableWebSecurity     
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
@@ -42,7 +42,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/", "/home", "/signUp").permitAll()
+            .antMatchers("/", "/home", "/signUp", "/signUpOk").permitAll()
             .anyRequest().authenticated();    
         http.formLogin()
             .loginPage("/login")

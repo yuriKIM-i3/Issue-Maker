@@ -1,4 +1,4 @@
-package hello.service.login;
+package hello.service.user;
 
 import java.io.IOException;
  

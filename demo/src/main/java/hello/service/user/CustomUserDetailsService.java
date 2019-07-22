@@ -1,4 +1,4 @@
-package hello.service.login;
+package hello.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import hello.domain.Account;
-import hello.mapper.LoginMapper;
-import hello.service.login.SecurityMember;
+import hello.mapper.UserMapper;
+import hello.service.user.SecurityMember;
 
 @Service
 //UserDetailsService 인터페이스는 DB에서 유저 정보를 가져오는 역할을 한다
@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     private static final String ROLE_PREFIX = "ROLE_";
 
     @Autowired
-    LoginMapper loginMapper;
+    UserMapper userMapper;
 
     /**
      * UserDetailsService 인터페이스에는 DB에서 유저 정보를 불러오는 중요한 메소드가 존재한다. 
@@ -32,9 +32,9 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Account account = loginMapper.readUser(username);
+        Account account = userMapper.readUser(username);
         if(account != null) {
-            account.setAuthorities(makeGrantedAuthority(loginMapper.readAuthority(username)));
+            account.setAuthorities(makeGrantedAuthority(userMapper.readAuthority(username)));
         }
         return new SecurityMember(account);
     }

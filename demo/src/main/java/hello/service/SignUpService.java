@@ -1,15 +1,17 @@
 package hello.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hello.domain.Account;
-import hello.mapper.LoginMapper;
+import hello.mapper.UserMapper;
 
 @Service
 public class SignUpService{
-    LoginMapper loginMapper;
+    @Autowired
+    UserMapper userMapper;
 
     public void signUpOkService(Account account){
-        loginMapper.insertUser(account);
+        userMapper.insertUser(account);
     }
 }

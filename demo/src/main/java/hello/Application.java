@@ -8,13 +8,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import hello.domain.Account;
-import hello.mapper.LoginMapper;
+import hello.mapper.UserMapper;
 
 @SpringBootApplication
 @MapperScan(basePackages = "hello")
 public class Application implements CommandLineRunner {
     @Autowired
-    private LoginMapper loginMapper;
+    private UserMapper userMapper;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -29,9 +29,9 @@ public class Application implements CommandLineRunner {
         account.setUsername("user3");
         account.setPassword(passwordEncoder.encode("password"));
 		account.setName("안보여");
-        loginMapper.insertUser(account);
+        userMapper.insertUser(account);
         
         System.out.println("inserted");
-        System.out.println(loginMapper.readUser("user3").getPassword());
+        System.out.println(userMapper.readUser("user3").getPassword());
     }
 }
