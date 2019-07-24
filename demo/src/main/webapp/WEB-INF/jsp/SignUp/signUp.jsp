@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="org.springframework.validation.BindingResult" %>
+
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/resources/js/jQuery.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resources/css/common.css">
-    <title>Issue Maker</title>
-  </head>
-  <body class="wrap">     
+    <%@ include file="/WEB-INF/jsp/Commonization/html_head.jsp" %>
+    <body class="wrap">    
+    <%-- <%
+    BindingResult validation = (BindingResult) request.getAttribute("errorMessege");
+    boolean hasError = validation != null;
+    %>  --%>
         <header> 
             <nav class="navbar header">
                 <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
@@ -26,24 +21,53 @@
             <div class="row justify-content-center">
                 <div class="col-5 pt-4 bg-secondary text-white rounded mt-5">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form action="/signUpOk" method="post">
+                    <form action="/signUp_check" method="post">
                         <div class="row my-3 pl-5">
                             <div class="col-3">
                                 <label for="email">Email</label>
                             </div>
-                            <div class="col-6">
-                                <input type="email" name="username" class="form-control" id="email" placeholder="name@example.com">
+                            <div class="col-6">                                
+                                <c:choose>
+                                    <c:when test="${(empty errorMessege.hasFieldErrors('username')) or (errorMessege.hasFieldErrors('username')==false && errorMessege.hasErrors()==true)}">
+                                        <input type="text" class="form-control" name="username" value="${errorMessege.getFieldValue('username')}" id="email" placeholder="name@example.com">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="text" class="form-control is-invalid" name="username" value="${errorMessege.getFieldValue('username')}" id="email" placeholder="name@example.com">
+                                        <div class="invalid-feedback">
+                                            ${errorMessege.getFieldError('username').getDefaultMessage()}
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+
+                                <%-- <% if (hasError && validation.hasFieldErrors("username")) { %>
+                                    <input type="text" class="form-control is-invalid" name="username" value="<%= validation.getFieldError("username").getRejectedValue() %>">
+                                    <div class="invalid-feedback">
+                                <%= validation.getFieldError("username").getDefaultMessage() %>
+                                    </div>
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="username" id="email" placeholder="name@example.com">
+                                <% } %> --%>
                             </div>
                             <div class="col-2 text-center">
                                 <button type="button" class="btn btn-dark">Check</button>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="row my-3 pl-5">
                             <div class="col-3">
                                 <label for="name">Name</label>
                             </div>
                             <div class="col-6">
-                                <input type="text" name="name" class="form-control" id="name">
+                            <c:choose>
+                                <c:when test="${(empty errorMessege.hasFieldErrors('name')) or (errorMessege.hasFieldErrors('name')==false && errorMessege.hasErrors()==true)}">                                    
+                                    <input type="text" class="form-control" name="name" value="${errorMessege.getFieldValue('name')}" id="name">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" class="form-control is-invalid" name="name" value="${errorMessege.getFieldValue('name')}">
+                                    <div class="invalid-feedback">
+                                        ${errorMessege.getFieldError('name').getDefaultMessage()}
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                             </div>
                             <div class="col-2 text-center">
                                 <button type="button" class="btn btn-dark">Check</button>
@@ -54,8 +78,26 @@
                                 <label for="password">password</label>
                             </div>
                             <div class="col-6">
-                                <input type="password" name="password" class="form-control" id="password" placeholder="10자이상">
-                            </div>
+                                <c:choose>
+                                    <c:when test="${(empty errorMessege.hasFieldErrors('password')) or (errorMessege.hasFieldErrors('password')==false && errorMessege.hasErrors()==true)}">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="10자이상">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="10자이상">
+                                        <div class="invalid-feedback">
+                                            ${errorMessege.getFieldError('password').getDefaultMessage()}
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                                <%-- <% if (hasError && validation.hasFieldErrors("password")) { %>
+                                    <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="10자이상">
+                                    <div class="invalid-feedback">
+                                <%= validation.getFieldError("password").getDefaultMessage() %>
+                                    </div>
+                                <% } else { %>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="10자이상">
+                                <% } %> --%>
+                            </div>                            
                             <div class="col-2"></div>
                         </div>
                         <div class="row my-3 pl-5">

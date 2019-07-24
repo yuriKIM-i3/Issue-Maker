@@ -42,7 +42,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/", "/home", "/signUp", "/signUpOk").permitAll()
+            .antMatchers("/", "/home", "/signUp", "/signUpOk", "/signUp_check").permitAll()
             .anyRequest().authenticated();    
         http.formLogin()
             .loginPage("/login")
