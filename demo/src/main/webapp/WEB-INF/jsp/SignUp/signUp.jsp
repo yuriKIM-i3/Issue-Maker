@@ -6,10 +6,6 @@
 <html>
     <%@ include file="/WEB-INF/jsp/Commonization/html_head.jsp" %>
     <body class="wrap">    
-    <%-- <%
-    BindingResult validation = (BindingResult) request.getAttribute("errorMessege");
-    boolean hasError = validation != null;
-    %>  --%>
         <header> 
             <nav class="navbar header">
                 <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
@@ -38,15 +34,6 @@
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
-
-                                <%-- <% if (hasError && validation.hasFieldErrors("username")) { %>
-                                    <input type="text" class="form-control is-invalid" name="username" value="<%= validation.getFieldError("username").getRejectedValue() %>">
-                                    <div class="invalid-feedback">
-                                <%= validation.getFieldError("username").getDefaultMessage() %>
-                                    </div>
-                                <% } else { %>
-                                    <input type="text" class="form-control" name="username" id="email" placeholder="name@example.com">
-                                <% } %> --%>
                             </div>
                             <div class="col-2 text-center">
                                 <button type="button" class="btn btn-dark">Check</button>
@@ -88,24 +75,26 @@
                                             ${errorMessege.getFieldError('password').getDefaultMessage()}
                                         </div>
                                     </c:otherwise>
-                                </c:choose>
-                                <%-- <% if (hasError && validation.hasFieldErrors("password")) { %>
-                                    <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="10자이상">
-                                    <div class="invalid-feedback">
-                                <%= validation.getFieldError("password").getDefaultMessage() %>
-                                    </div>
-                                <% } else { %>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="10자이상">
-                                <% } %> --%>
+                                </c:choose>              
                             </div>                            
                             <div class="col-2"></div>
                         </div>
                         <div class="row my-3 pl-5">
                             <div class="col-3">
-                                <label for="passwordCheck">passwordCheck</label>
+                                <label for="password_check">passwordCheck</label>
                             </div>
                             <div class="col-6">
-                                <input type="password" class="form-control" id="passwordCheck">
+                            <c:choose>
+                                <c:when test="${(empty errorMessege.hasFieldErrors('password_check')) or (errorMessege.hasFieldErrors('password_check')==false && errorMessege.hasErrors()==true)}">
+                                    <input type="password" class="form-control" name="password_check" id="password_check">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="password" class="form-control is-invalid" name="pass_check_error">
+                                    <div class="invalid-feedback">
+                                        ${errorMessege.getFieldError('password_check').getDefaultMessage()}
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>                              
                             </div>
                             <div class="col-2"></div>
                         </div>
@@ -118,10 +107,6 @@
                 </div>
             </div>
         </div>
-        <footer class="page-footer font-small blue pt-4">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="https://github.com/crane93">Yuri Kim</a>
-            </div> 
-        </footer>
+        <%@ include file="/WEB-INF/jsp/Commonization/html_footer.jsp" %>
     </body>
 </html>

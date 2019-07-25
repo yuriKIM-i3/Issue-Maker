@@ -2,9 +2,6 @@ package hello.domain;
 
 import java.util.Collection;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

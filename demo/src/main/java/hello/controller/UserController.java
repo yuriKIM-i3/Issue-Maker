@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +32,18 @@ public class UserController{
 
     @PostMapping("/signUp_check")
     public String signUpCheck(@Valid AccountRequest accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){
-        // BindingResult validation = bindingResult;
-
-        //중복검사 탈락
+        //유효성검사
         if(bindingResult.hasErrors()){
-            System.out.println("에러데스네");
+            System.out.println("유효성검사에러데스네");            
+            model.addAttribute("errorMessege", bindingResult);
+            return "SignUp/signUp";
+        }
+
+        //비번 똑같이 입력했니?
+        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){
+            System.out.println("비밀번호 확인이 틀림");
+            FieldError fieldError = new FieldError("accountCheck", "password_check", "암호가 일치하지 않는다능");
+            bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
             return "SignUp/signUp";
         }
@@ -48,7 +56,7 @@ public class UserController{
         signUpService.signUpOkService(account);
         System.out.println("회원가입완료");
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 

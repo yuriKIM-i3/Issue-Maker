@@ -16,19 +16,12 @@ import hello.mapper.UserMapper;
 import hello.service.user.SecurityMember;
 
 @Service
-//UserDetailsService 인터페이스는 DB에서 유저 정보를 가져오는 역할을 한다
 public class CustomUserDetailsService implements UserDetailsService{
-
     private static final String ROLE_PREFIX = "ROLE_";
 
     @Autowired
     UserMapper userMapper;
 
-    /**
-     * UserDetailsService 인터페이스에는 DB에서 유저 정보를 불러오는 중요한 메소드가 존재한다. 
-     * 바로 loadUserByUsername() 메소드이다. 
-     * 이 메소드에서 유저 정보를 불러오는 작업을 하면 된다.
-     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
