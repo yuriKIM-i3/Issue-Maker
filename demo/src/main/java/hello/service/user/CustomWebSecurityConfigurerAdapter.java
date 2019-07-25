@@ -11,14 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import hello.service.user.CustomUserDetailsService;
+import hello.service.user.UserService;
 import hello.service.user.CustomLoginSuccessHandler;
  
 @EnableWebSecurity     
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    UserService userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -39,8 +39,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
+        http.csrf().disable()
             .authorizeRequests()
             .antMatchers("/", "/home", "/signUp", "/signUpOk", "/signUp_check").permitAll()
             .anyRequest().authenticated();    
@@ -56,6 +55,6 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 }

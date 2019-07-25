@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="org.springframework.validation.BindingResult" %>
 
 <!doctype html>
 <html>
@@ -15,10 +14,10 @@
         <div class="container-fluid">
             <div class="row"><div class="col py-3"></div></div>
             <div class="row justify-content-center">
-                <div class="col-5 pt-4 bg-secondary text-white rounded mt-5">
+                <div class="col-5 pt-4 rounded mt-5">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form action="/signUp_check" method="post">
-                        <div class="row my-3 pl-5">
+                    <form action="/signUp_check" method="post" class="my-5">
+                        <div class="row my-3 pl-5 justify-content-center">
                             <div class="col-3">
                                 <label for="email">Email</label>
                             </div>
@@ -34,12 +33,9 @@
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
-                            </div>
-                            <div class="col-2 text-center">
-                                <button type="button" class="btn btn-dark">Check</button>
-                            </div>                            
+                            </div>                        
                         </div>
-                        <div class="row my-3 pl-5">
+                        <div class="row my-3 pl-5 justify-content-center">
                             <div class="col-3">
                                 <label for="name">Name</label>
                             </div>
@@ -55,12 +51,9 @@
                                     </div>
                                 </c:otherwise>
                             </c:choose>
-                            </div>
-                            <div class="col-2 text-center">
-                                <button type="button" class="btn btn-dark">Check</button>
-                            </div>
+                            </div>                           
                         </div>
-                        <div class="row my-3 pl-5">
+                        <div class="row my-3 pl-5 justify-content-center">
                             <div class="col-3">
                                 <label for="password">password</label>
                             </div>
@@ -76,10 +69,9 @@
                                         </div>
                                     </c:otherwise>
                                 </c:choose>              
-                            </div>                            
-                            <div class="col-2"></div>
+                            </div>                                                       
                         </div>
-                        <div class="row my-3 pl-5">
+                        <div class="row my-3 pl-5 justify-content-center">
                             <div class="col-3">
                                 <label for="password_check">passwordCheck</label>
                             </div>
@@ -89,14 +81,13 @@
                                     <input type="password" class="form-control" name="password_check" id="password_check">
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="password" class="form-control is-invalid" name="pass_check_error">
+                                    <input type="password" class="form-control is-invalid" name="password_check">
                                     <div class="invalid-feedback">
                                         ${errorMessege.getFieldError('password_check').getDefaultMessage()}
                                     </div>
                                 </c:otherwise>
                             </c:choose>                              
-                            </div>
-                            <div class="col-2"></div>
+                            </div>                           
                         </div>
                         <div class="row my-3 justify-content-center">
                             <div class="col-3 text-center">
@@ -107,6 +98,6 @@
                 </div>
             </div>
         </div>
-        <%@ include file="/WEB-INF/jsp/Commonization/html_footer.jsp" %>
+        <%@ include file="/WEB-INF/jsp/Commonization/html_footer.jsp" %>        
     </body>
 </html>

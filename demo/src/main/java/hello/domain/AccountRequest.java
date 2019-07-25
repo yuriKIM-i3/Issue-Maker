@@ -9,12 +9,15 @@ import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import hello.custom_annotaion.EmailCheckAnotation;
+import hello.custom_annotaion.NickCheckAnotation;
 import lombok.Data;
 
 @Data
 public class AccountRequest implements UserDetails{
     private Long id;
 
+    @EmailCheckAnotation
     @NotNull(message = "입력은 필수데스네")
     @Size(min=10, max=30, message = "이메일의 길이가 부적절합니다")
     @Email
@@ -28,6 +31,7 @@ public class AccountRequest implements UserDetails{
     @Size(min=10)
     private String password_check;
 
+    @NickCheckAnotation
     @NotNull(message = "입력은 필수데스네")
     @Size(max=20, message = "닉네임의 최대 길이는 20자데스네")
     private String name;

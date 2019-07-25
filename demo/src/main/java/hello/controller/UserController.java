@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hello.domain.Account;
 import hello.domain.AccountRequest;
-import hello.service.SignUpService;
+import hello.service.user.UserService;
+
 
 @Controller
 public class UserController{
     @Autowired
-    SignUpService signUpService;
+    UserService userService;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -53,12 +54,11 @@ public class UserController{
         account.setName(request.getParameter("name"));
         account.setPassword(passwordEncoder.encode(request.getParameter("password")));
 
-        signUpService.signUpOkService(account);
+        userService.userInsertService(account);
         System.out.println("회원가입완료");
 
         return "redirect:/login";
     }
-
 
     @PostMapping("/signUpOk")
     public String signUpOk(HttpServletRequest request){
@@ -67,7 +67,7 @@ public class UserController{
         account.setName(request.getParameter("name"));
         account.setPassword(passwordEncoder.encode(request.getParameter("password")));
 
-        signUpService.signUpOkService(account);
+        userService.userInsertService(account);
         System.out.println("회원가입완료");
         return "/index";
     }

@@ -8,4 +8,6 @@ public interface UserMapper {
     public Account readUser(String username);
     public List<String> readAuthority(String username);
     public void insertUser(Account user);
+    public int signUpEmailCheck(String email);
+    public int signUpNickCheck(String nickname);
 }

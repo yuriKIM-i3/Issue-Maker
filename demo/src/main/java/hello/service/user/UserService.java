@@ -16,12 +16,13 @@ import hello.mapper.UserMapper;
 import hello.service.user.SecurityMember;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService{
+public class UserService implements UserDetailsService{
     private static final String ROLE_PREFIX = "ROLE_";
-
+    
     @Autowired
     UserMapper userMapper;
 
+    //Spring boot WebSecurity login
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -32,9 +33,28 @@ public class CustomUserDetailsService implements UserDetailsService{
         return new SecurityMember(account);
     }
 
+    //Spring boot WebSecurity login
     private static List<GrantedAuthority> makeGrantedAuthority(List<String> roles){
         List<GrantedAuthority> list = new ArrayList<>();
         roles.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role)));
         return list;
+    }
+    
+    public void userInsertService(Account account){
+        userMapper.insertUser(account);
+    }
+
+    public boolean isUsernameExist(String email) {
+        if (userMapper.signUpEmailCheck(email) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isNicknameExist(String nickname) {
+        if (userMapper.signUpNickCheck(nickname) > 0) {
+            return true;
+        }
+        return false;
     }
 } 

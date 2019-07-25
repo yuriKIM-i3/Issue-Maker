@@ -11,4 +11,10 @@
     INSERT INTO user(username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
     VALUES(#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
   </insert>
+  <select id="signUpEmailCheck" parameterType="String" resultType="Integer">
+    SELECT COUNT(*) FROM user WHERE username = #{username}
+  </select>
+  <select id="signUpNickCheck" parameterType="String" resultType="Integer">
+    SELECT COUNT(*) FROM user WHERE name = #{name}
+  </select>
 </mapper> 

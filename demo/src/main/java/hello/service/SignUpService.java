@@ -11,7 +11,5 @@ public class SignUpService{
     @Autowired
     UserMapper userMapper;
 
-    public void signUpOkService(Account account){
-        userMapper.insertUser(account);
-    }
+
 }
