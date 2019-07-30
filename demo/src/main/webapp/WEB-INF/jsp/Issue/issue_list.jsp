@@ -6,13 +6,13 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/myPage">내정보</a>                  
+                        <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/myPage">My Page</a>                  
                     </li>
                     <li class="nav-item">                  
-                        <a href="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/logout") %>" class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3">로그아웃</a>  
+                        <a href="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/logout") %>" class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3">Sign Out</a>  
                     </li>
                 </ul>           
             </nav>
@@ -24,7 +24,7 @@
                 <form>
                     <div class="row">
                         <div class="col-4 ml-1 pt-1">
-                            <label for="searchIssue" class="font-weight-light">이슈검색</label>                
+                            <label for="searchIssue" class="font-weight-light">Search Issue</label>                
                         </div>               
                     </div>
                     <div class="row pb-2">

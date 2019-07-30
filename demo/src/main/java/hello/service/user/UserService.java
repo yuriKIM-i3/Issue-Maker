@@ -57,4 +57,16 @@ public class UserService implements UserDetailsService{
         }
         return false;
     }
+
+    public Account userInfoService(String username){
+        return userMapper.userInfo(username);
+    }
+
+    public void modifyNameService(String username, String name){
+        userMapper.modifyName(username, name);
+    }
+
+    public void modifyPassService(String username, String password){
+        userMapper.modifyPass(username, password);
+    }
 } 

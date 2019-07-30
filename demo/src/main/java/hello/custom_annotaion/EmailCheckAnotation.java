@@ -10,7 +10,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = EmailValidator.class)
 @Documented
 public @interface EmailCheckAnotation {
-    String message() default "Username already exist";
+    String message() default "Email already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

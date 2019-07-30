@@ -9,10 +9,11 @@ import lombok.Data;
 
 @Data
 public class Account implements UserDetails{
-    private Long id;
+    private int id;
     private String username;   
     private String password;
     private String name;
+    private String create_at;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;

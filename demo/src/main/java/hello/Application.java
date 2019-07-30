@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Account account = new Account();
         account.setUsername("user3");
-        account.setPassword(passwordEncoder.encode("password"));
+        account.setPassword(passwordEncoder.encode("p"));
 		account.setName("안보여");
         userMapper.insertUser(account);
         

@@ -8,7 +8,7 @@
         <header> 
             <nav class="navbar header">
                 <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
-                <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/login">로그인</a>            
+                <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/login">Sign In</a>            
             </nav>
         </header>
         <div class="container-fluid">
@@ -60,10 +60,10 @@
                             <div class="col-6">
                                 <c:choose>
                                     <c:when test="${(empty errorMessege.hasFieldErrors('password')) or (errorMessege.hasFieldErrors('password')==false && errorMessege.hasErrors()==true)}">
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="10자이상">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="over 10 letters">
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="10자이상">
+                                        <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="over 10 letters">
                                         <div class="invalid-feedback">
                                             ${errorMessege.getFieldError('password').getDefaultMessage()}
                                         </div>

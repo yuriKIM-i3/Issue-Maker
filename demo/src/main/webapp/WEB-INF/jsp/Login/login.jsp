@@ -18,13 +18,9 @@
               <label for="exampleInputPassword1">Password</label>
               <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Remember Email</label>
-            </div>
             <div class="row justify-content-center">
               <div class="col-4 text-center">
-                <button type="submit" class="btn btn-dark">login</button>
+                <button type="submit" class="btn btn-dark">Sign In</button>
               </div>
               <div class="col-4 text-center">
                 <a href="/signUp" role="button" class="btn btn-dark">Sign Up</a>

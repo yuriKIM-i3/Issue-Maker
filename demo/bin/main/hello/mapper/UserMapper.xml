@@ -17,4 +17,10 @@
   <select id="signUpNickCheck" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE name = #{name}
   </select>
+  <select id="userInfo" parameterType="String" resultType="hello.domain.Account">
+    SELECT * FROM user WHERE username = #{username}
+  </select>
+  <update id="modifyName" parameterType="String">
+    UPDATE user SET name = #{name} WHERE username = #{username}
+  </update>
 </mapper> 
