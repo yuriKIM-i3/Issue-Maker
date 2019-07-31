@@ -51,8 +51,8 @@ public class UserService implements UserDetailsService{
         return false;
     }
 
-    public boolean isNicknameExist(String nickname) {
-        if (userMapper.signUpNickCheck(nickname) > 0) {
+    public boolean isNameExist(String name) {
+        if (userMapper.signUpNameCheck(name) > 0) {
             return true;
         }
         return false;
@@ -68,5 +68,9 @@ public class UserService implements UserDetailsService{
 
     public void modifyPassService(String username, String password){
         userMapper.modifyPass(username, password);
+    }
+
+    public void userDeleteService(String username){
+        userMapper.deleteUser(username);
     }
 } 

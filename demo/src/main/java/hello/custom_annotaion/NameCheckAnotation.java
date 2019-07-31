@@ -7,10 +7,10 @@ import javax.validation.Payload;
 
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NickValidator.class)
+@Constraint(validatedBy = NameValidator.class)
 @Documented
-public @interface NickCheckAnotation {
-    String message() default "nickname already exist";
+public @interface NameCheckAnotation {
+    String message() default "name already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

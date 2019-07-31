@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 import hello.service.user.UserService;
 
 @Component
-public class NickValidator implements ConstraintValidator<NickCheckAnotation, String>{
+public class NameValidator implements ConstraintValidator<NameCheckAnotation, String>{
     @Autowired private UserService userService;
 
     @Override
-    public void initialize(NickCheckAnotation nickCheckAnotation) {
+    public void initialize(NameCheckAnotation nameCheckAnotation) {
     }
 
     @Override
-    public boolean isValid(String nickname, ConstraintValidatorContext context) {
-        return !userService.isNicknameExist(nickname);
+    public boolean isValid(String name, ConstraintValidatorContext context) {
+        return !userService.isNameExist(name);
     }
 }

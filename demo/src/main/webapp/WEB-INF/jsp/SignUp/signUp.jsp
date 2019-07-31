@@ -76,17 +76,17 @@
                                 <label for="password_check">passwordCheck</label>
                             </div>
                             <div class="col-6">
-                            <c:choose>
-                                <c:when test="${(empty errorMessege.hasFieldErrors('password_check')) or (errorMessege.hasFieldErrors('password_check')==false && errorMessege.hasErrors()==true)}">
-                                    <input type="password" class="form-control" name="password_check" id="password_check">
-                                </c:when>
-                                <c:otherwise>
-                                    <input type="password" class="form-control is-invalid" name="password_check">
-                                    <div class="invalid-feedback">
-                                        ${errorMessege.getFieldError('password_check').getDefaultMessage()}
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>                              
+                                <c:choose>
+                                    <c:when test="${(empty errorMessege.hasFieldErrors('password_check')) or (errorMessege.hasFieldErrors('password_check')==false && errorMessege.hasErrors()==true)}">
+                                        <input type="password" class="form-control" name="password_check" id="password_check">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="password" class="form-control is-invalid" name="password_check">
+                                        <div class="invalid-feedback">
+                                            ${errorMessege.getFieldError('password_check').getDefaultMessage()}
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>                              
                             </div>                           
                         </div>
                         <div class="row my-3 justify-content-center">

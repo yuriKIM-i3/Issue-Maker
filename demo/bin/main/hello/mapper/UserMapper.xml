@@ -14,7 +14,7 @@
   <select id="signUpEmailCheck" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE username = #{username}
   </select>
-  <select id="signUpNickCheck" parameterType="String" resultType="Integer">
+  <select id="signUpNameCheck" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE name = #{name}
   </select>
   <select id="userInfo" parameterType="String" resultType="hello.domain.Account">
@@ -22,5 +22,8 @@
   </select>
   <update id="modifyName" parameterType="String">
     UPDATE user SET name = #{name} WHERE username = #{username}
+  </update>
+  <update id="modifyPass" parameterType="String">
+    UPDATE user SET password = #{password} WHERE username = #{username}
   </update>
 </mapper> 

@@ -25,31 +25,51 @@
                 </div>
             </div>        
             <form action="/modify_apply_pass" method="POST">
-            <input type="hidden" name="username" value="${account.username}"/>
+                <input type="hidden" name="username" value="${account.username}"/>
                 <div class="row justify-content-center mt-4 py-2">
-                    <div class="col-2">
+                    <div class="col-2 text-center">
                         <label for="Email">Email</label>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 text-center">
                         <h4>${account.username}</h4>
                     </div>                
                 </div>      
-                <div class="row justify-content-center py-2">
-                    <div class="col-2">
-                        <label for="password">Password</label>
+                <div class="row my-3 pl-5 justify-content-center">
+                    <div class="col-2 text-center">
+                        <label for="password">password</label>
                     </div>
-                    <div class="col-3">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="at least 10 letters">
-                    </div>
+                    <div class="col-3 text-center">
+                        <c:choose>
+                            <c:when test="${(empty errorMessege.hasFieldErrors('password')) or (errorMessege.hasFieldErrors('password')==false && errorMessege.hasErrors()==true)}">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="over 10 letters">
+                            </c:when>
+                            <c:otherwise>
+                                <input type="password" class="form-control is-invalid" name="password" id="password" placeholder="over 10 letters">
+                                <div class="invalid-feedback">
+                                    ${errorMessege.getFieldError('password').getDefaultMessage()}
+                                </div>
+                            </c:otherwise>
+                        </c:choose>              
+                    </div>                                                       
                 </div>
-                <div class="row justify-content-center py-2">
-                    <div class="col-2">
-                        <label for="passwordCheck">Password Check</label>
+                <div class="row my-3 pl-5 justify-content-center">
+                    <div class="col-2 text-center">
+                        <label for="password_check">passwordCheck</label>
                     </div>
-                    <div class="col-3">
-                        <input type="password" class="form-control" id="passwordCheck">
-                    </div>
-                </div>            
+                    <div class="col-3 text-center">
+                        <c:choose>
+                            <c:when test="${(empty errorMessege.hasFieldErrors('password_check')) or (errorMessege.hasFieldErrors('password_check')==false && errorMessege.hasErrors()==true)}">
+                                <input type="password" class="form-control" name="password_check" id="password_check">
+                            </c:when>
+                            <c:otherwise>
+                                <input type="password" class="form-control is-invalid" name="password_check">
+                                <div class="invalid-feedback">
+                                    ${errorMessege.getFieldError('password_check').getDefaultMessage()}
+                                </div>
+                            </c:otherwise>
+                        </c:choose>                              
+                    </div>                           
+                </div> 
                 <div class="row justify-content-center py-2 mt-4">
                     <div class="col-2 text-center">
                         <button class="btn btn-dark" type="submit">Save</button>                  

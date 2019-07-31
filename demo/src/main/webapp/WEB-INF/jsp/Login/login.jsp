@@ -11,8 +11,18 @@
           <h1 class="text-center mt-2">Issue Maker</h1>
           <form method="POST" action="/login">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">      
+              <label for="exampleInputEmail1">Email address</label>              
+              <c:choose>
+                <c:when test="${(empty errorMessege.hasFieldErrors('username')) or (errorMessege.hasFieldErrors('username')==false && errorMessege.hasErrors()==true)}">
+                    <input type="text" class="form-control" name="username" value="${errorMessege.getFieldValue('username')}" id="email" placeholder="name@example.com">
+                </c:when>
+                <c:otherwise>
+                    <input type="text" class="form-control is-invalid" name="username" value="${errorMessege.getFieldValue('username')}" id="email" placeholder="name@example.com">
+                    <div class="invalid-feedback">
+                        ${errorMessege.getFieldError('username').getDefaultMessage()}
+                    </div>
+                </c:otherwise>
+            </c:choose>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>

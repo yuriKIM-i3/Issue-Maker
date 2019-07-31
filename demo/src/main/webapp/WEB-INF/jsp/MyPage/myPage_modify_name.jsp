@@ -25,21 +25,21 @@
                 </div>
             </div>        
             <form action="/modify_apply_name" method="POST">            
-                <%-- <div class="row justify-content-center mt-4 py-2">
-                    <div class="col-2">
+                <div class="row justify-content-center mt-4 py-2">
+                    <div class="col-2 text-center">
                         <label for="Email">Email</label>
                     </div>
-                    <div class="col-3">
-                        <h4>${account.username}</h4>
+                    <div class="col-3 text-center">
+                        <h4>${account.username}</h4>                       
                     </div>                
-                </div> --%>
+                </div>
                 <div class="row justify-content-center py-2">
-                    <div class="col-2">
+                    <div class="col-2 text-center">
                         <label for="name">Name</label>
                     </div>
-                    <div class="col-3">                        
+                    <div class="col-3 text-center">                        
                         <c:choose>
-                            <c:when test="${(empty errorMessege.hasFieldErrors('name'))}">                                    
+                            <c:when test="${(empty errorMessege.hasFieldErrors('name')) or (errorMessege.hasFieldErrors('name')==false && errorMessege.hasErrors()==true)}">                                    
                                 <input type="text" class="form-control" name="name" value="${account.name}" id="name">
                             </c:when>
                             <c:otherwise>
@@ -50,7 +50,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                </div>                        
+                </div>                  
                 <div class="row justify-content-center py-2 mt-4">
                     <div class="col-2 text-center">
                         <button class="btn btn-dark" type="submit">Save</button>                  

@@ -5,27 +5,27 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import hello.custom_annotaion.EmailCheckAnotation;
-import hello.custom_annotaion.NickCheckAnotation;
+import hello.custom_annotaion.NameCheckAnotation;
 import lombok.Data;
 
 @Data
 public class AccountRequest{
     @EmailCheckAnotation
-    @NotNull(message = "입력은 필수데스네")
-    @Size(min=10, max=30, message = "이메일의 길이가 부적절합니다")
+    @NotNull(message = "Email can't be blank")
+    @Size(min=10, max=30, message = "check length")
     @Email
     private String username;   
 
-    @NotNull(message = "입력은 필수데스네")
+    @NotNull(message = "Password can't be blank")
     @Size(min=10, message = "at least 10 letters")
     private String password;
 
     @NotNull
-    @Size(min=10)
+    @Size(min=10, message = "at least 10 letters")
     private String password_check;
 
-    @NickCheckAnotation
-    @NotNull(message = "입력은 필수데스네")
+    @NameCheckAnotation
+    @NotNull(message = "Name can't be blank")
     @Size(max=20, message = "upto 20 letters")
     private String name;
 }

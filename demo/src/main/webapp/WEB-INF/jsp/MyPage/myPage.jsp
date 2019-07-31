@@ -54,10 +54,33 @@
                 </div>
                 <div class="col-2 text-center">
                     <a class="btn btn-dark" href="/myPage_modify_pass">Change Password</a>                  
-                </div>
-                <div class="col-2 text-center">
-                    <a class="btn btn-dark" href="/myPage_close">Close Account</a>
-                </div>
+                </div>           
+                
+                    <div class="col-2 text-center">                    
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#confirmDelete">Close Account</button>                    
+                    </div>
+                    <!-- Modal -->
+                    <form action="/delete_account" method="get"> 
+                    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Close Account</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-left">
+                                    Are you sure to be closed?<br>                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary" >Yes</button>
+                                    <button type="button" class="btn btn-outline-secondary">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
             </div> 
         </div>
         <footer class="page-footer font-small blue pt-4">
