@@ -2,13 +2,14 @@ package hello.mapper;
 
 import java.util.List;
 
-import hello.domain.Account;
+import hello.domain.account.Account;
 
 public interface UserMapper {
     public Account readUser(String username);
     public List<String> readAuthority(String username);
     public void insertUser(Account user);
     public int signUpEmailCheck(String email);
+    public int signInEmailCheck(String email);
     public int signUpNameCheck(String name);
     public Account userInfo(String username);
     public void modifyName(String username, String name);

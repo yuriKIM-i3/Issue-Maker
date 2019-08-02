@@ -1,4 +1,4 @@
-package hello.domain;
+package hello.domain.account;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +12,6 @@ public class AccountRequestPass{
     private String password;
 
     @NotNull
-    @Size(min=10, message = "at least 10 letters")
     private String password_check;
 }
 

@@ -45,6 +45,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
             .anyRequest().authenticated();    
         http.formLogin()
             .loginPage("/login")
+            // .loginPage("/login_check")
             .successHandler(successHandler())
             .permitAll();        
         http.logout()

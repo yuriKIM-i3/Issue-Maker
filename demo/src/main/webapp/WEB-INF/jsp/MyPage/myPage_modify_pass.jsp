@@ -24,17 +24,8 @@
                     <h1 class="text-center">My Profile</h1>
                 </div>
             </div>        
-            <form action="/modify_apply_pass" method="POST">
-                <input type="hidden" name="username" value="${account.username}"/>
+            <form action="/modify_apply_pass" method="POST">                                
                 <div class="row justify-content-center mt-4 py-2">
-                    <div class="col-2 text-center">
-                        <label for="Email">Email</label>
-                    </div>
-                    <div class="col-3 text-center">
-                        <h4>${account.username}</h4>
-                    </div>                
-                </div>      
-                <div class="row my-3 pl-5 justify-content-center">
                     <div class="col-2 text-center">
                         <label for="password">password</label>
                     </div>
@@ -52,7 +43,7 @@
                         </c:choose>              
                     </div>                                                       
                 </div>
-                <div class="row my-3 pl-5 justify-content-center">
+                <div class="row justify-content-center mt-4 py-2">
                     <div class="col-2 text-center">
                         <label for="password_check">passwordCheck</label>
                     </div>

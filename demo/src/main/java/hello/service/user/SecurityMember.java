@@ -2,7 +2,7 @@ package hello.service.user;
 
 import org.springframework.security.core.userdetails.User;
 
-import hello.domain.Account;
+import hello.domain.account.Account;
 
 public class SecurityMember extends User {
 

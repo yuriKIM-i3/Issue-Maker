@@ -1,4 +1,4 @@
-package hello.domain;
+package hello.domain.account;
 
 import java.util.Collection;
 

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import hello.domain.Account;
+import hello.domain.account.Account;
 import hello.mapper.UserMapper;
 
 @SpringBootApplication

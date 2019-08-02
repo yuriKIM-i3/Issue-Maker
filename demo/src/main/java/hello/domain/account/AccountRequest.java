@@ -1,4 +1,4 @@
-package hello.domain;
+package hello.domain.account;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ public class AccountRequest{
     @EmailCheckAnotation
     @NotNull(message = "Email can't be blank")
     @Size(min=10, max=30, message = "check length")
-    @Email
+    @Email(message = "type mismatch")
     private String username;   
 
     @NotNull(message = "Password can't be blank")

@@ -16,39 +16,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hello.domain.Account;
-import hello.domain.AccountRequest;
-import hello.domain.AccountRequestEmail;
-import hello.domain.AccountRequestName;
-import hello.domain.AccountRequestPass;
+import hello.domain.account.*;
 import hello.service.user.UserService;
 
 
 @Controller
 public class UserController{
+    /**
+     * 세션의 username가져오기
+     */
+    public void getUsername(Model model){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof UserDetails){
+            String username = ((UserDetails)principal).getUsername();
+            model.addAttribute("account", userService.userInfoService(username));
+        }  
+    }
+
     @Autowired
     UserService userService;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
-    @GetMapping("/signUp")
+    @RequestMapping("/signUp")
     private String signUpForm(){
         return "SignUp/signUp";
     }
 
     @PostMapping("/signUp_check")
     public String signUpCheck(@Valid AccountRequest accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){
-        //유효성검사
-        if(bindingResult.hasErrors()){
-            System.out.println("유효성검사에러데스네");            
+        //유효성검사        
+        if(bindingResult.hasErrors()){         
             model.addAttribute("errorMessege", bindingResult);
             return "SignUp/signUp";
         }
 
         //비번 똑같이 입력했니?
-        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){
-            System.out.println("비밀번호 확인이 틀림");
+        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){        
             FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
@@ -60,59 +65,60 @@ public class UserController{
         account.setName(request.getParameter("name"));
         account.setPassword(passwordEncoder.encode(request.getParameter("password")));
 
-        userService.userInsertService(account);
-        System.out.println("회원가입완료");
-
+        userService.userInsertService(account);    
         return "redirect:/login";
     }
 
     @RequestMapping("/login")
-    public String login(@Valid AccountRequestEmail accountCheck, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            FieldError fieldError = new FieldError("accountCheck", "username", "Email doesn't exist");
-            bindingResult.addError(fieldError);
-            model.addAttribute("errorMessege", bindingResult);            
-            return "Login/login";
-        }
+    public String login(){
         return "Login/login";
     }
 
-    public void get_username(Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("account", userService.userInfoService(username));
-        }  
-    }
+    // 로그인시 아이디가 있는지 검사, 값이 controller로 안넘어옴 / 아마 시큐리티문제인듯... 시큐리티에 걸리는듯...
+    // /**
+    //  * Email이 있는지 검사
+    //  */
+    // // @RequestMapping("/login_check")
+    // @PostMapping("/login_check")
+    // public String login_check(@Valid AccountRequestEmail accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){      
+    //     System.out.println(request.getParameter("username"));            
+    //     System.out.println(request.getParameter("password"));  
+    //     if(bindingResult.hasErrors()){
+    //         System.out.println("유효성검사에러데스네");            
+    //         System.out.println(request.getParameter("username"));            
+    //         System.out.println(request.getParameter("password"));            
+    //         model.addAttribute("errorMessege", bindingResult);
+    //         System.out.println(bindingResult.getFieldError());        
+    //         return "Login/login";
+    //     }
+    //     return "redirect:/issue_list";
+    // }
 
     @RequestMapping("/myPage")
     public String myPage(Model model){
-        //로그인한 사용자의 정보 얻기        
-        get_username(model);
+        getUsername(model);
         return "MyPage/myPage";
     }
 
     @RequestMapping("/myPage_modify_name")
     public String myPage_modify_name(Model model, HttpServletRequest request){
-        get_username(model);        
+        getUsername(model);        
         return "MyPage/myPage_modify_name";
     }
 
     @PostMapping("/modify_apply_name")
     public String myPage_apply_name(@Valid AccountRequestName accountCheck, BindingResult bindingResult, Model model, @RequestParam("name") String name){          
-        if(bindingResult.hasErrors()){
-            System.out.println("이름변경유효성검사에러데스네");            
+        if(bindingResult.hasErrors()){         
             System.out.print(bindingResult.getFieldError());
             model.addAttribute("errorMessege", bindingResult);      
-            get_username(model);      
+            getUsername(model);      
             return "MyPage/myPage_modify_name";
         }
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
-            userService.modifyNameService(username, name);      
-            System.out.print("이름변경성공");      
+            userService.modifyNameService(username, name);              
         }                
         return "redirect:/myPage";
     }
@@ -129,14 +135,12 @@ public class UserController{
 
     @PostMapping("/modify_apply_pass")
     public String modify_apply_pass(@Valid AccountRequestPass accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){          
-        if(bindingResult.hasErrors()){
-            System.out.println("유효성검사에러데스네");            
+        if(bindingResult.hasErrors()){                     
             model.addAttribute("errorMessege", bindingResult);
             return "MyPage/myPage_modify_pass";
         }
 
-        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){
-            System.out.println("비밀번호 확인이 틀림");
+        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){            
             FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
@@ -146,20 +150,17 @@ public class UserController{
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
-            userService.modifyPassService(username, passwordEncoder.encode(request.getParameter("password")));      
-            System.out.print("이름변경성공");      
+            userService.modifyPassService(username, passwordEncoder.encode(request.getParameter("password")));                   
         }                
         return "redirect:/login";
     }
 
     @GetMapping("/delete_account")
-    public String delete_account(){
-        System.out.println("called");
+    public String delete_account(){        
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
-            userService.userDeleteService(username);            
-            System.out.print("회원탈퇴");      
+            userService.userDeleteService(username);                        
         }  
         return "redirect:/";
     }

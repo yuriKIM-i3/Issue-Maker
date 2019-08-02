@@ -54,8 +54,7 @@
                 </div>
                 <div class="col-2 text-center">
                     <a class="btn btn-dark" href="/myPage_modify_pass">Change Password</a>                  
-                </div>           
-                
+                </div>                           
                     <div class="col-2 text-center">                    
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#confirmDelete">Close Account</button>                    
                     </div>
@@ -74,7 +73,7 @@
                                     Are you sure to be closed?<br>                                
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-secondary" >Yes</button>
+                                    <button type="submit" class="btn btn-secondary">Yes</button>
                                     <button type="button" class="btn btn-outline-secondary">No</button>
                                 </div>
                             </div>

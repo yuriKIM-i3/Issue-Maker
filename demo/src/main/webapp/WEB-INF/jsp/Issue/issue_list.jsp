@@ -39,7 +39,7 @@
                             </div>                       
                         </div>
                         <div class="col-2 offset-md-4 text-right">
-                            <a type="button" class="btn btn-outline-dark btn-lg" href="/issue_write">New Issue</a>
+                            <a role="button" class="btn btn-outline-dark btn-lg" href="/issue_write">New Issue</a>
                         </div>             
                     </div>
                 </form>

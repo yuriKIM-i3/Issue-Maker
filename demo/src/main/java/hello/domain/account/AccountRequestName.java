@@ -1,4 +1,4 @@
-package hello.domain;
+package hello.domain.account;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

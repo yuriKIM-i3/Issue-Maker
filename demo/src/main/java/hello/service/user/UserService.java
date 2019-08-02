@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import hello.domain.Account;
+import hello.domain.account.Account;
 import hello.mapper.UserMapper;
 import hello.service.user.SecurityMember;
 
@@ -46,6 +46,13 @@ public class UserService implements UserDetailsService{
 
     public boolean isUsernameExist(String email) {
         if (userMapper.signUpEmailCheck(email) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isUsernameNoExist(String email) {
+        if (userMapper.signInEmailCheck(email) == 0) {            
             return true;
         }
         return false;
