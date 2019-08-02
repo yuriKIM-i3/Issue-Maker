@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="hello.mapper.IssueMapper">
+    <select id="testcount" parameterType="hello.domain.IssueSearchVO" resultType="int">
+        select count(*) from issue;
+    </select>
+
+    <select id="testlist" resultType="hello.domain.IssueVO">
+        select * from issue order by id desc limit #{pagenum}, #{contentnum}
+    </select>
+
+    <select id="issueList" resultType="hello.domain.IssueVO">
+        select * from issue;
+    </select>
+
+    <select id="issueView" resultType="hello.domain.IssueVO">
+        select * from issue where id = #{id}
+    </select>
+
+    <update id="issueUpdateViewCount">
+        update issue set viewcount = viewcount where id = #{id}
+    </update>
+    <insert id="issueInsert" parameterType="hello.domain.IssueVO">
+        insert into issue(title, content) values(#{title}, #{content})
+    </insert>
+
+    <delete id="issueDelete">
+        delete from issue where id = #{id}
+    </delete>
+</mapper>
