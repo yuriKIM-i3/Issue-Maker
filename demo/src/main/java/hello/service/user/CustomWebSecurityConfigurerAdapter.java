@@ -41,7 +41,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/", "/home", "/signUp", "/signUpOk", "/signUp_check").permitAll()
+            .antMatchers("/", "/sign_up", "/signUp_check").permitAll()
             .anyRequest().authenticated();    
         http.formLogin()
             .loginPage("/login")

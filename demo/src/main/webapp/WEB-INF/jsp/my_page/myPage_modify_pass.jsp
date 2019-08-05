@@ -5,7 +5,7 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue_list">Issue List</a>                  
@@ -63,7 +63,10 @@
                 <div class="row justify-content-center py-2 mt-4">
                     <div class="col-2 text-center">
                         <button class="btn btn-dark" type="submit">Save</button>                  
-                    </div>    
+                    </div>  
+                    <div class="col-2 text-center">
+                        <a class="btn btn-dark" role="button" href="/my_page">Go Back</a>                  
+                    </div>   
                 </div> 
             </form>
         </div>

@@ -47,7 +47,7 @@
                         <button class="btn btn-dark" type="submit">Save</button>                  
                     </div>    
                     <div class="col-2 text-center">
-                        <a class="btn btn-dark" role="button" href="/myPage">Go Back</a>                  
+                        <a class="btn btn-dark" role="button" href="/my_page">Go Back</a>                  
                     </div>    
                 </div> 
             </form>

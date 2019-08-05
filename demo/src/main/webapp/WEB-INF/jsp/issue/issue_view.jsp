@@ -5,7 +5,7 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
                         <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/MyPage">내정보</a>                  

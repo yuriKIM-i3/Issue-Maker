@@ -5,10 +5,10 @@
   <body class="wrap">
     <header> 
       <nav class="navbar header">
-        <a class="navbar-brand font_C_white" href="/index">Issue Maker</a>            
+        <a class="navbar-brand font_C_white" href="/">Issue Maker</a>            
         <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/signUp">Sign Up</a>                  
+              <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/sign_up">Sign Up</a>                  
             </li>
             <li class="nav-item">                  
               <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/login">Sign In</a>  
