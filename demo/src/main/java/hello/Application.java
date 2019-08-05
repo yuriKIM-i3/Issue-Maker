@@ -15,7 +15,7 @@ import hello.mapper.UserMapper;
 public class Application implements CommandLineRunner {
     @Autowired
     private UserMapper userMapper;
-
+    
 	@Autowired
 	PasswordEncoder passwordEncoder;
 

@@ -25,7 +25,7 @@ public class UserController{
     /**
      * 세션의 username가져오기
      */
-    public void getUsername(Model model){
+    public void set_user_name(Model model){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
@@ -39,9 +39,9 @@ public class UserController{
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
-    @RequestMapping("/signUp")
+    @RequestMapping("/sign_up")
     private String signUpForm(){
-        return "SignUp/signUp";
+        return "sign_up/sign_up";
     }
 
     @PostMapping("/signUp_check")
@@ -49,7 +49,7 @@ public class UserController{
         //유효성검사        
         if(bindingResult.hasErrors()){         
             model.addAttribute("errorMessege", bindingResult);
-            return "SignUp/signUp";
+            return "sign_up/sign_up";
         }
 
         //비번 똑같이 입력했니?
@@ -57,7 +57,7 @@ public class UserController{
             FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
-            return "SignUp/signUp";
+            return "sign_up/sign_up";
         }
 
         Account account = new Account();
@@ -71,7 +71,7 @@ public class UserController{
 
     @RequestMapping("/login")
     public String login(){
-        return "Login/login";
+        return "login/login";
     }
 
     // 로그인시 아이디가 있는지 검사, 값이 controller로 안넘어옴 / 아마 시큐리티문제인듯... 시큐리티에 걸리는듯...
@@ -94,16 +94,16 @@ public class UserController{
     //     return "redirect:/issue_list";
     // }
 
-    @RequestMapping("/myPage")
-    public String myPage(Model model){
-        getUsername(model);
-        return "MyPage/myPage";
+    @RequestMapping("/my_page")
+    public String my_page(Model model){
+        set_user_name(model);
+        return "my_page/my_page";
     }
 
     @RequestMapping("/myPage_modify_name")
     public String myPage_modify_name(Model model, HttpServletRequest request){
-        getUsername(model);        
-        return "MyPage/myPage_modify_name";
+        set_user_name(model);        
+        return "my_page/myPage_modify_name";
     }
 
     @PostMapping("/modify_apply_name")
@@ -111,8 +111,8 @@ public class UserController{
         if(bindingResult.hasErrors()){         
             System.out.print(bindingResult.getFieldError());
             model.addAttribute("errorMessege", bindingResult);      
-            getUsername(model);      
-            return "MyPage/myPage_modify_name";
+            set_user_name(model);      
+            return "my_page/myPage_modify_name";
         }
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -120,7 +120,7 @@ public class UserController{
             String username = ((UserDetails)principal).getUsername();
             userService.modifyNameService(username, name);              
         }                
-        return "redirect:/myPage";
+        return "redirect:/my_page";
     }
 
     @RequestMapping("/myPage_modify_pass")
@@ -128,23 +128,23 @@ public class UserController{
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("account", userService.userInfoService(username));
+            // model.addAttribute("account", userService.userInfoService(username));
         }               
-        return "MyPage/myPage_modify_pass";
+        return "my_page/myPage_modify_pass";
     }
 
     @PostMapping("/modify_apply_pass")
     public String modify_apply_pass(@Valid AccountRequestPass accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){          
         if(bindingResult.hasErrors()){                     
             model.addAttribute("errorMessege", bindingResult);
-            return "MyPage/myPage_modify_pass";
+            return "my_page/myPage_modify_pass";
         }
 
         if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){            
             FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
-            return "MyPage/myPage_modify_pass";
+            return "my_page/myPage_modify_pass";
         }               
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

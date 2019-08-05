@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/jsp/commonization/jstl.jsp" %> 
 <!doctype html>
 <html>
-  <%@ include file="/WEB-INF/jsp/Commonization/html_head.jsp" %>
+  <%@ include file="/WEB-INF/jsp/commonization/html_head.jsp" %> 
   <body class="wrap">
     <div class="container">
       <div class="row"><div class="col py-3"></div></div>
@@ -33,7 +32,7 @@
                 <button type="submit" class="btn btn-dark">Sign In</button>
               </div>
               <div class="col-4 text-center">
-                <a href="/signUp" role="button" class="btn btn-dark">Sign Up</a>
+                <a href="/sign_up" role="button" class="btn btn-dark">Sign Up</a>
               </div>
             </div>    
           </form>

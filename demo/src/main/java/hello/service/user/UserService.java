@@ -25,7 +25,6 @@ public class UserService implements UserDetailsService{
     //Spring boot WebSecurity login
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Account account = userMapper.readUser(username);
         if(account != null) {
             account.setAuthorities(makeGrantedAuthority(userMapper.readAuthority(username)));

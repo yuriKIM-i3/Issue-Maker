@@ -15,6 +15,7 @@ public class EmailValidator implements ConstraintValidator<EmailCheckAnotation, 
     @Override
     public void initialize(EmailCheckAnotation emailCheckAnotation) {
     }
+    
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
         return !userService.isUsernameExist(email);
