@@ -5,10 +5,10 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue/list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue_list">Issue List</a>                  
+                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue/list">Issue List</a>                  
                 </li>                
                 <li class="nav-item">                  
                     <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/logout") %>">Sign Out</a>  
@@ -49,10 +49,10 @@
             </div>            
             <div class="row justify-content-center py-2 mt-4">
                 <div class="col-2 text-center">
-                    <a class="btn btn-dark" href="/myPage_modify_name">Change Name</a>                  
+                    <a class="btn btn-dark" href="/my_page/modify/name">Change Name</a>                  
                 </div>
                 <div class="col-2 text-center">
-                    <a class="btn btn-dark" href="/myPage_modify_pass">Change Password</a>                  
+                    <a class="btn btn-dark" href="/my_page/modify/pass">Change Password</a>                  
                 </div>                           
                     <div class="col-2 text-center">                    
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#confirmDelete">Close Account</button>                    

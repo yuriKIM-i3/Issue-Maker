@@ -23,7 +23,7 @@
                     <h1 class="text-center">My Profile</h1>
                 </div>
             </div>        
-            <form action="/modify_apply_pass" method="POST">                                
+            <form action="/my_page/apply/pass" method="POST">                                
                 <div class="row justify-content-center mt-4 py-2">
                     <div class="col-2 text-center">
                         <label for="password">password</label>

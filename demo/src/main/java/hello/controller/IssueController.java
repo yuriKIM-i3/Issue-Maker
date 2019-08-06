@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IssueController{
-    @RequestMapping("/issue_list")
+    @RequestMapping("/issue/list")
     public String issue_list(){           
         return "issue/issue_list";
     }
 
-    @RequestMapping("/issue_write")
+    @RequestMapping("/issue/write")
     public String issue_write(){
         return "issue/issue_write";
     }
 
-    @RequestMapping("/issue_view")
+    @RequestMapping("/issue/view")
     public String issue_view(){
         return "issue/issue_view";
     }

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import hello.service.user.UserService;
 
 @Component
-public class EmailValidator implements ConstraintValidator<EmailCheckAnotation, String>{
+public class UserNameValidator implements ConstraintValidator<IsUsernameExist, String>{
     @Autowired private UserService userService;
 
     @Override
-    public void initialize(EmailCheckAnotation emailCheckAnotation) {
+    public void initialize(IsUsernameExist emailCheckAnotation) {
     }
     
     @Override

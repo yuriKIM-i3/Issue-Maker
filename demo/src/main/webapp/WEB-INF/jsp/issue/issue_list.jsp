@@ -6,7 +6,7 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue/list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
                         <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/my_page">My Page</a>                  
@@ -39,7 +39,7 @@
                             </div>                       
                         </div>
                         <div class="col-2 offset-md-4 text-right">
-                            <a role="button" class="btn btn-outline-dark btn-lg" href="/issue_write">New Issue</a>
+                            <a role="button" class="btn btn-outline-dark btn-lg" href="/issue/write">New Issue</a>
                         </div>             
                     </div>
                 </form>
@@ -129,7 +129,7 @@
                                                 <h5><span class="badge badge-light">open</span></h5>
                                             </div>
                                             <div class="col-5">
-                                                <a href="/issue_view" class="alert-link">이슈제목</a>
+                                                <a href="/issue/view" class="alert-link">이슈제목</a>
                                             </div>
                                             <div class="col-3">
                                                 라벨자리

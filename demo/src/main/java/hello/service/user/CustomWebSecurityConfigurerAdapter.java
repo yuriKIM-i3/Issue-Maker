@@ -27,7 +27,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new CustomLoginSuccessHandler("/issue_list");
+        return new CustomLoginSuccessHandler("/issue/list");
     }
 
     @Override           
@@ -41,7 +41,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/", "/sign_up", "/signUp_check").permitAll()
+            .antMatchers("/", "/sign_up", "/sign_up/check").permitAll()
             .anyRequest().authenticated();    
         http.formLogin()
             .loginPage("/login")

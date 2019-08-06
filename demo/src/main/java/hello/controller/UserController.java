@@ -1,11 +1,9 @@
 package hello.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,23 +12,21 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import hello.domain.account.*;
+import hello.service.user.SecurityMember;
 import hello.service.user.UserService;
 
 
 @Controller
 public class UserController{
     /**
-     * 세션의 username가져오기
+     * 세션의 user_id가져오기
      */
-    public void set_user_name(Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("account", userService.userInfoService(username));
-        }  
+    public int get_user_id(){
+        SecurityMember principal = (SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int id = principal.getId();
+        return id;
     }
 
     @Autowired
@@ -40,32 +36,26 @@ public class UserController{
 	PasswordEncoder passwordEncoder;
 
     @RequestMapping("/sign_up")
-    private String signUpForm(){
+    private String signUp(){
         return "sign_up/sign_up";
     }
 
-    @PostMapping("/signUp_check")
-    public String signUpCheck(@Valid AccountRequest accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){
-        //유효성검사        
+    @PostMapping("/sign_up/check")
+    public String signUpCheck(@Valid Account account, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){         
             model.addAttribute("errorMessege", bindingResult);
             return "sign_up/sign_up";
         }
-
-        //비번 똑같이 입력했니?
-        if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){        
-            FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
+        
+        if(!account.getPassword().equals(account.getPassword_check())){        
+            FieldError fieldError = new FieldError("account", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
             return "sign_up/sign_up";
-        }
+        }        
 
-        Account account = new Account();
-        account.setUsername(request.getParameter("username"));
-        account.setName(request.getParameter("name"));
-        account.setPassword(passwordEncoder.encode(request.getParameter("password")));
-
-        userService.userInsertService(account);    
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        userService.userInsertService(account);
         return "redirect:/login";
     }
 
@@ -96,72 +86,55 @@ public class UserController{
 
     @RequestMapping("/my_page")
     public String my_page(Model model){
-        set_user_name(model);
+        model.addAttribute("account", userService.userInfoService(get_user_id()));
         return "my_page/my_page";
     }
 
-    @RequestMapping("/myPage_modify_name")
-    public String myPage_modify_name(Model model, HttpServletRequest request){
-        set_user_name(model);        
-        return "my_page/myPage_modify_name";
+    @RequestMapping("/my_page/modify/name")
+    public String myPage_modify_name(Model model){
+        model.addAttribute("account", userService.userInfoService(get_user_id()));
+        return "my_page/modify/name";
     }
 
-    @PostMapping("/modify_apply_name")
-    public String myPage_apply_name(@Valid AccountRequestName accountCheck, BindingResult bindingResult, Model model, @RequestParam("name") String name){          
+    @PostMapping("/my_page/apply/name")
+    public String myPage_apply_name(@Valid AccountRequestName accountCheck, BindingResult bindingResult, Model model){          
         if(bindingResult.hasErrors()){         
             System.out.print(bindingResult.getFieldError());
             model.addAttribute("errorMessege", bindingResult);      
-            set_user_name(model);      
-            return "my_page/myPage_modify_name";
+            model.addAttribute("account", userService.userInfoService(get_user_id()));
+            return "my_page/modify/name";
         }
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            userService.modifyNameService(username, name);              
-        }                
+        userService.modifyNameService(get_user_id(), accountCheck.getName());                              
         return "redirect:/my_page";
     }
 
-    @RequestMapping("/myPage_modify_pass")
-    public String myPage_modify_pass(@Valid AccountRequest accountCheck, BindingResult bindingResult, Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            // model.addAttribute("account", userService.userInfoService(username));
-        }               
-        return "my_page/myPage_modify_pass";
+    @RequestMapping("/my_page/modify/pass")
+    public String myPage_modify_pass(){              
+        return "my_page/modify/pass";
     }
 
-    @PostMapping("/modify_apply_pass")
-    public String modify_apply_pass(@Valid AccountRequestPass accountCheck, BindingResult bindingResult, Model model, HttpServletRequest request){          
+    @PostMapping("/my_page/apply/pass")
+    public String modify_apply_pass(@Valid AccountRequestPass accountCheck, BindingResult bindingResult, Model model){          
         if(bindingResult.hasErrors()){                     
             model.addAttribute("errorMessege", bindingResult);
-            return "my_page/myPage_modify_pass";
+            return "my_page/modify/pass";
         }
 
         if(!accountCheck.getPassword().equals(accountCheck.getPassword_check())){            
             FieldError fieldError = new FieldError("accountCheck", "password_check", "Passwords must match");
             bindingResult.addError(fieldError);
             model.addAttribute("errorMessege", bindingResult);
-            return "my_page/myPage_modify_pass";
-        }               
+            return "my_page/modify/pass";
+        }    
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            userService.modifyPassService(username, passwordEncoder.encode(request.getParameter("password")));                   
-        }                
+        userService.modifyPassService(get_user_id(), passwordEncoder.encode(accountCheck.getPassword()));                   
         return "redirect:/login";
     }
 
     @GetMapping("/delete_account")
     public String delete_account(){        
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails){
-            String username = ((UserDetails)principal).getUsername();
-            userService.userDeleteService(username);                        
-        }  
+        userService.userDeleteService(get_user_id());                          
         return "redirect:/";
     }
 }

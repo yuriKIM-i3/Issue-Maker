@@ -5,10 +5,10 @@
     <body class="wrap">
         <header> 
             <nav class="navbar header">
-                <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
+                <a class="navbar-brand font_C_white" href="/issue/list">Issue Maker</a>            
                 <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue_list">Issue List</a>                  
+                    <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue/list">Issue List</a>                  
                 </li>                
                 <li class="nav-item">                  
                     <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/logout") %>">Sign Out</a>  
@@ -23,7 +23,7 @@
                     <h2 class="text-center">Modify Name</h2>
                 </div>
             </div>        
-            <form action="/modify_apply_name" method="POST">            
+            <form action="/my_page/apply/name" method="POST">            
                 <div class="row justify-content-center py-2">
                     <div class="col-2 text-center">
                         <label for="name">Name</label>

@@ -5,13 +5,13 @@
   <body class="wrap">
     <header> 
       <nav class="navbar header">
-        <a class="navbar-brand font_C_white" href="/issue_list">Issue Maker</a>            
+        <a class="navbar-brand font_C_white" href="/issue/list">Issue Maker</a>            
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="../Issue/IssueList.html">이슈목록</a>                  
+            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/issue/list">이슈목록</a>                  
           </li>
           <li class="nav-item">
-            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="../MyPage/MyPage.html">내정보</a>                  
+            <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/MyPage/MyPage.html">내정보</a>                  
           </li>
           <li class="nav-item">                  
             <a class="btn btn-secondary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="#">로그아웃</a>  

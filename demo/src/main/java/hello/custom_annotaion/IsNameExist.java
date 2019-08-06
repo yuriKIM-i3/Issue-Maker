@@ -9,7 +9,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = NameValidator.class)
 @Documented
-public @interface NameCheckAnotation {
+public @interface IsNameExist {
     String message() default "name already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

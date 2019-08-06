@@ -44,39 +44,40 @@ public class UserService implements UserDetailsService{
     }
 
     public boolean isUsernameExist(String email) {
-        if (userMapper.signUpEmailCheck(email) > 0) {
+        if (userMapper.isUsernameExist(email) > 0) {
             return true;
         }
         return false;
     }
 
-    public boolean isUsernameNoExist(String email) {
-        if (userMapper.signInEmailCheck(email) == 0) {            
-            return true;
-        }
-        return false;
-    }
+    // 로그인시 존재하지 않는 이메일을 쓸 경우
+    // public boolean isUsernameNoExist(String email) {
+    //     if (userMapper.signInEmailCheck(email) == 0) {            
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     public boolean isNameExist(String name) {
-        if (userMapper.signUpNameCheck(name) > 0) {
+        if (userMapper.isNameExist(name) > 0) {
             return true;
         }
         return false;
     }
 
-    public Account userInfoService(String username){
-        return userMapper.userInfo(username);
+    public Account userInfoService(int user_id){
+        return userMapper.userInfo(user_id);
     }
 
-    public void modifyNameService(String username, String name){
-        userMapper.modifyName(username, name);
+    public void modifyNameService(int user_id, String name){
+        userMapper.modifyName(user_id, name);
     }
 
-    public void modifyPassService(String username, String password){
-        userMapper.modifyPass(username, password);
+    public void modifyPassService(int user_id, String password){
+        userMapper.modifyPass(user_id, password);
     }
 
-    public void userDeleteService(String username){
-        userMapper.deleteUser(username);
+    public void userDeleteService(int user_id){
+        userMapper.deleteUser(user_id);
     }
 } 

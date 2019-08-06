@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import hello.service.user.UserService;
 
 @Component
-public class NameValidator implements ConstraintValidator<NameCheckAnotation, String>{
+public class NameValidator implements ConstraintValidator<IsNameExist, String>{
     @Autowired private UserService userService;
 
     @Override
-    public void initialize(NameCheckAnotation nameCheckAnotation) {
+    public void initialize(IsNameExist nameCheckAnotation) {
     }
 
     @Override

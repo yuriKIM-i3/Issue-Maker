@@ -35,12 +35,7 @@
                 <a href="/sign_up" role="button" class="btn btn-dark">Sign Up</a>
               </div>
             </div>    
-          </form>
-          <div class="row">
-            <div class="col pt-2">
-              <%-- <a href="#" class="text-decoration-none text-light">Forgot Password?</a> --%>
-            </div>
-          </div>
+          </form>          
         </div>
       </div>
     </div>

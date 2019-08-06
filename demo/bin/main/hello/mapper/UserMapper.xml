@@ -11,13 +11,13 @@
     INSERT INTO user(username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
     VALUES(#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
   </insert>
-  <select id="signUpEmailCheck" parameterType="String" resultType="Integer">
+  <select id="isUsernameExist" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE username = #{username}
   </select>
   <select id="signInEmailCheck" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE username = #{username}
   </select>
-  <select id="signUpNameCheck" parameterType="String" resultType="Integer">
+  <select id="isNameExist" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE name = #{name}
   </select>
   <select id="userInfo" parameterType="String" resultType="hello.domain.account.Account">

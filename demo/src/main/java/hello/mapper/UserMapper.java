@@ -8,11 +8,11 @@ public interface UserMapper {
     public Account readUser(String username);
     public List<String> readAuthority(String username);
     public void insertUser(Account user);
-    public int signUpEmailCheck(String email);
+    public int isUsernameExist(String email);
     public int signInEmailCheck(String email);
-    public int signUpNameCheck(String name);
-    public Account userInfo(String username);
-    public void modifyName(String username, String name);
-    public void modifyPass(String username, String password);
-    public void deleteUser(String username);
+    public int isNameExist(String name);
+    public Account userInfo(int id);
+    public void modifyName(int id, String name);
+    public void modifyPass(int id, String password);
+    public void deleteUser(int id);
 }

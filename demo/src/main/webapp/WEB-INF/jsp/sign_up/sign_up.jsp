@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-5 pt-4 rounded mt-5">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form action="/signUp_check" method="post" class="my-5">
+                    <form action="/sign_up/check" method="post" class="my-5">
                         <div class="row my-3 pl-5 justify-content-center">
                             <div class="col-3">
                                 <label for="email">Email</label>

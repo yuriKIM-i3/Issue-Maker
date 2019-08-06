@@ -7,9 +7,9 @@ import javax.validation.Payload;
 
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmailValidator.class)
+@Constraint(validatedBy = UserNameValidator.class)
 @Documented
-public @interface EmailCheckAnotation {
+public @interface IsUsernameExist {
     String message() default "Email already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

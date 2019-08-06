@@ -7,10 +7,10 @@ CREATE TABLE user (
     password VARCHAR(500) NULL DEFAULT NULL,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	update_at DATETIME,
-    isAccountNonExpired TINYINT(1) NULL DEFAULT NULL,
-    isAccountNonLocked TINYINT(1) NULL DEFAULT NULL,
-    isCredentialsNonExpired TINYINT(1) NULL DEFAULT NULL,
-    isEnabled TINYINT(1) NULL DEFAULT NULL
+    isAccountNonExpired TINYINT(1) DEFAULT 1,
+    isAccountNonLocked TINYINT(1) DEFAULT 1,
+    isCredentialsNonExpired TINYINT(1) DEFAULT 1,
+    isEnabled TINYINT(1) DEFAULT 1
 );
 
 DROP TABLE IF EXISTS authority;

@@ -11,7 +11,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.DefaultRedirectStrategy;
  
 
-// 로그인 후 리다이렉트 설정이 안되서 커스텀 핸들러를 작성
 public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     private String _url;
