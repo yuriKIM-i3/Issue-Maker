@@ -1,33 +1,37 @@
 package hello;
 
-import java.util.Arrays;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import hello.domain.account.Account;
+import hello.mapper.UserMapper;
 
 @SpringBootApplication
-public class Application {
+@MapperScan(basePackages = "hello")
+public class Application implements CommandLineRunner {
+    @Autowired
+    private UserMapper userMapper;
+    
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
-
-        };
+    @Override
+    public void run(String... args) throws Exception {
+        Account account = new Account();
+        account.setUsername("user3");
+        account.setPassword(passwordEncoder.encode("p"));
+		account.setName("안보여");
+        userMapper.insertUser(account);
+        
+        System.out.println("inserted");
+        System.out.println(userMapper.readUser("user3").getPassword());
     }
-
 }
