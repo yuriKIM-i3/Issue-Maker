@@ -30,8 +30,5 @@ public class Application implements CommandLineRunner {
         account.setPassword(passwordEncoder.encode("p"));
 		account.setName("안보여");
         userMapper.insertUser(account);
-        
-        System.out.println("inserted");
-        System.out.println(userMapper.readUser("user3").getPassword());
     }
 }

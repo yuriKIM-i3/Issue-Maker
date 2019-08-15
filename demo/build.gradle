@@ -39,5 +39,4 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'                           //lombok
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile("org.hibernate.validator:hibernate-validator")                  //validation
-
 }
