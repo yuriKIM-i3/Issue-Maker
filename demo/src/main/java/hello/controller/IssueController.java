@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,15 +41,16 @@ public class IssueController{
             
             return "issue/issue_write";
         }
-
-        issueService.insertIssue(issue);
-        System.out.print("글작성");
+        issue.setUser_id(getUserId.get_user_id());
+        issueService.insertIssueEachUser(issue);
 
         return "redirect:/issue/list";
     }
 
-    @RequestMapping("/issue/view")
-    public String issue_view(){
+    @RequestMapping("/issue/view/{id}")
+    public String issue_view(@PathVariable int id, Model model){        
+        model.addAttribute("issue_view", issueService.viewIssueService(id));
+
         return "issue/issue_view";
     }
 }

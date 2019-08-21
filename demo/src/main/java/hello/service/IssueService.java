@@ -12,11 +12,15 @@ public class IssueService{
     @Autowired
     IssueMapper issueMapper;
 
-    public void insertIssue(Issue issue){
-        issueMapper.insertIssue(issue);        
+    public void insertIssueEachUser(Issue issue){
+        issueMapper.insertIssueEachUser(issue);        
     };
 
     public Account selectIssueById(int id){
         return issueMapper.selectIssueById(id);
     };
+
+    public Issue viewIssueService(int id){
+        return issueMapper.viewIssue(id);
+    }
 };

@@ -135,7 +135,7 @@
                                                     </c:if>
                                                 </div>                                                
                                                 <div class="col-5">
-                                                    <a href="/issue/view" class="alert-link">${my_issue_list.title}</a>
+                                                    <a href="/issue/view/${my_issue_list.id}" class="alert-link">${my_issue_list.title}</a>
                                                 </div>
                                                 <div class="col-3">
                                                     라벨자리
