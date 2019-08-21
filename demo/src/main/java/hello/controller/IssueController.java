@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import hello.common_method.GetUserId;
 import hello.domain.issue.Issue;
 import hello.service.IssueService;
 
@@ -17,9 +18,12 @@ public class IssueController{
     @Autowired
     IssueService issueService;
     
+    @Autowired
+    GetUserId getUserId;
+
     @RequestMapping("/issue/list")
     public String issue_list(Model model){           
-        model.addAttribute("issue_list", issueService.listIssue());
+        model.addAttribute("my_issue_list", issueService.selectIssueById(getUserId.get_user_id()).getIssues());
 
         return "issue/issue_list";
     }

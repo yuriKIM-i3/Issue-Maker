@@ -1,6 +1,7 @@
 package hello.domain.account;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import hello.custom_annotaion.IsNameExist;
 import hello.custom_annotaion.IsUsernameExist;
+import hello.domain.issue.Issue;
 import lombok.Data;
 
 @Data
@@ -43,5 +45,7 @@ public class Account implements UserDetails{
     private boolean isEnabled;
 
     private Collection<? extends GrantedAuthority> authorities;
+    
+    private List<Issue> issues;
 }
 

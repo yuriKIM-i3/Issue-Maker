@@ -3,7 +3,6 @@ package hello.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,27 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import hello.common_method.GetUserId;
 import hello.domain.account.*;
-import hello.service.user.SecurityMember;
 import hello.service.user.UserService;
 
 
 @Controller
 public class UserController{
-    /**
-     * 세션의 user_id가져오기
-     */
-    public int get_user_id(){
-        SecurityMember principal = (SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int id = principal.getId();
-        return id;
-    }
-
     @Autowired
     UserService userService;
 
 	@Autowired
-	PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    GetUserId getUserId;
 
     @RequestMapping("/sign_up")
     private String signUp(){
@@ -86,13 +79,13 @@ public class UserController{
 
     @RequestMapping("/my_page")
     public String my_page(Model model){
-        model.addAttribute("account", userService.userInfoService(get_user_id()));
+        model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
         return "my_page/my_page";
     }
 
     @RequestMapping("/my_page/modify/name")
     public String myPage_modify_name(Model model){
-        model.addAttribute("account", userService.userInfoService(get_user_id()));
+        model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
         return "my_page/modify/name";
     }
 
@@ -101,11 +94,11 @@ public class UserController{
         if(bindingResult.hasErrors()){         
             System.out.print(bindingResult.getFieldError());
             model.addAttribute("errorMessege", bindingResult);      
-            model.addAttribute("account", userService.userInfoService(get_user_id()));
+            model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
             return "my_page/modify/name";
         }
 
-        userService.modifyNameService(get_user_id(), accountCheck.getName());                              
+        userService.modifyNameService(getUserId.get_user_id(), accountCheck.getName());                              
         return "redirect:/my_page";
     }
 
@@ -128,13 +121,13 @@ public class UserController{
             return "my_page/modify/pass";
         }    
 
-        userService.modifyPassService(get_user_id(), passwordEncoder.encode(accountCheck.getPassword()));                   
+        userService.modifyPassService(getUserId.get_user_id(), passwordEncoder.encode(accountCheck.getPassword()));                   
         return "redirect:/login";
     }
 
     @GetMapping("/delete_account")
     public String delete_account(){        
-        userService.userDeleteService(get_user_id());                          
+        userService.userDeleteService(getUserId.get_user_id());                          
         return "redirect:/";
     }
 }

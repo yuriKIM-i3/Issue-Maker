@@ -24,11 +24,11 @@ CREATE TABLE issue(
     id INT PRIMARY KEY AUTO_INCREMENT,
     title TEXT DEFAULT NULL,
     content TEXT DEFAULT NULL,
-    condition TINYINT(1) DEFAULT 1,
+    status TINYINT(1) DEFAULT 1,
     viewcount INT,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	update_at DATETIME,
-    user_id INT
+    user_id INT 
 );
 
 DROP TABLE IF EXISTS related_writer;

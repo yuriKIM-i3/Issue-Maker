@@ -120,22 +120,22 @@
                 <div class="row">
                     <div class="col">
                         <div class="alert alert-light" role="alert" style="height: 900px">                            
-                            <c:forEach var="issue_list" items="${issue_list}">
+                            <c:forEach var="my_issue_list" items="${my_issue_list}">
                                 <div class="row">
                                     <div class="col">
                                         <div class="alert alert-light border-bottom h-75" role="alert">
                                             <!--이슈Status 라벨들  이슈 담당자들, 댓글수-->                                        
                                             <div class="row">                                                                                                                                                    
                                                 <div class="col-1">
-                                                    <c:if test="${issue_list.status == 1}">
+                                                    <c:if test="${my_issue_list.status == 1}">
                                                         <h5><span class="badge badge-light">open</span></h5>
                                                     </c:if>
-                                                    <c:if test="${issue_list.status == 0}">
+                                                    <c:if test="${my_issue_list.status == 0}">
                                                         <h5><span class="badge badge-dark">close</span></h5>
                                                     </c:if>
                                                 </div>                                                
                                                 <div class="col-5">
-                                                    <a href="/issue/view" class="alert-link">${issue_list.title}</a>
+                                                    <a href="/issue/view" class="alert-link">${my_issue_list.title}</a>
                                                 </div>
                                                 <div class="col-3">
                                                     라벨자리
