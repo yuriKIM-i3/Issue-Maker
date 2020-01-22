@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,7 +35,7 @@ public class Account implements UserDetails{
     private String password_check;
 
     @IsNameExist
-    @NotNull(message = "Name can't be blank")
+    @NotBlank(message = "Name can't be blank")
     @Size(max=20, message = "upto 20 letters")
     private String name;
     

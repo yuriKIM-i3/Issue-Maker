@@ -20,7 +20,7 @@
   <select id="isNameExist" parameterType="String" resultType="Integer">
     SELECT COUNT(*) FROM user WHERE name = #{name}
   </select>
-  <select id="userInfo" parameterType="Integer" resultType="hello.domain.account.Account">
+  <select id="info" parameterType="Integer" resultType="hello.domain.account.Account">
     SELECT * FROM user WHERE id = #{id}
   </select>
   <update id="modifyName">

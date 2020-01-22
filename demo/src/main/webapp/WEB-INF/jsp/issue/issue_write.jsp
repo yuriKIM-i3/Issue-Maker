@@ -47,10 +47,10 @@
             <div class="form-group">                          
               <c:choose>
                 <c:when test="${(empty errorMessege.hasFieldErrors('content')) or (errorMessege.hasFieldErrors('content')==false && errorMessege.hasErrors()==true)}">                                
-                  <textarea class="form-control overflow-auto" name="content" rows="13" value="${errorMessege.getFieldValue('title')}" id="content" placeholder="fill out a content"></textarea>
+                  <textarea class="form-control overflow-auto" name="content" rows="13" id="content" placeholder="fill out a content">${errorMessege.getFieldValue('content')}</textarea>
                 </c:when>
                 <c:otherwise>              
-                  <input type="text" class="form-control is-invalid" name="content" value="${errorMessege.getFieldValue('content')}" id="title" placeholder="fill out a content">
+                  <textarea class="form-control is-invalid" name="content" rows="13" id="content" placeholder="fill out a content">${errorMessege.getFieldValue('content')}</textarea>
                   <div class="invalid-feedback">
                     ${errorMessege.getFieldError('content').getDefaultMessage()}
                   </div>
@@ -66,13 +66,13 @@
           <div class="col-5">                      
           </div>
           <div class="col-1 text-center pt-1">
-            <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#SearchAssignee">Add</button>
+            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#searchAssignee">Add</button>              
             <!-- Modal -->
-            <div class="modal fade" id="SearchAssignee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="searchAssignee" tabindex="-1" role="dialog" aria-labelledby="searchAssigneeLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search Assignee</h5>
+                    <h5 class="modal-title" id="searchAssigneeLabel">search Assignee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,42 +81,42 @@
                     <div class="container">
                       <div class="row my-1">
                         <div class="col-8">
-                          <input type="text" class="form-control" placeholder="user name">
+                          <input type="text" class="form-control" placeholder="username">
                         </div>           
                         <div class="col-4">
-                          <button type="button" class="btn btn-dark">찾기</button>
+                          <button type="button" class="btn btn-dark">search</button>
                         </div>
                       </div>
                       <div class="row my-1 justify-content-start">
                         <div class="col-3 pt-3">
-                          검색된사람
+                          result
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-light border border-secondary">확인</button>
+                    <button type="button" class="btn btn-dark">Add assignee</button>
                   </div>
                 </div>
-              </div>  
-            </div>  
+              </div>
+            </div>	 
           </div>
-        </div>
+        </div>        
         <div class="row justify-content-center my-2">
-          <div class="col-2">                
-            <h4><span class="badge badge-secondary">Labels</span></h4>                 
-          </div>
-          <div class="col-5">
+          <div class="col-2">              
+            <h4><span class="badge badge-secondary">Labels</span></h4>               
+          </div>  
+          <div class="col-5">                      
           </div>
           <div class="col-1 text-center pt-1">
-            <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#addLabel">Add</button>
+            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#addLabel">Add</button>              
             <!-- Modal -->
-            <div class="modal fade" id="addLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addLabel" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Labels</h5>
+                    <h5 class="modal-title" id="addLabel">search Assignee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -125,27 +125,27 @@
                     <div class="container">
                       <div class="row my-1">
                         <div class="col-8">
-                          <input type="text" class="form-control" placeholder="라벨이름">
+                          <input type="text" class="form-control" placeholder="label name">
                         </div>           
                         <div class="col-4">
-                          <button type="button" class="btn btn-dark">찾기</button>
+                          <button type="button" class="btn btn-dark">search</button>
                         </div>
                       </div>
                       <div class="row my-1 justify-content-start">
                         <div class="col-3 pt-3">
-                          검색된 라벨
+                          result
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-light border border-secondary">Add</button>
+                    <button type="button" class="btn btn-dark">Add label</button>
                   </div>
                 </div>
-              </div>  
-            </div>  
-          </div>          
+              </div>
+            </div>	 
+          </div>         
         </div>
         <div class="row mt-4">
           <div class="col-7"></div>

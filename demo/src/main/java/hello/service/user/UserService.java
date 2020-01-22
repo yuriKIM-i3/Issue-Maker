@@ -66,7 +66,7 @@ public class UserService implements UserDetailsService{
     }
 
     public Account userInfoService(int user_id){
-        return userMapper.userInfo(user_id);
+        return userMapper.info(user_id);
     }
 
     public void modifyNameService(int user_id, String name){

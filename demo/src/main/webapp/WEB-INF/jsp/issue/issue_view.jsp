@@ -158,17 +158,14 @@
                                         </div>
                                     </div>
                                 </div>  
-                            </div>
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h4><span class="badge badge-success">ガレット</span></h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h4><span class="badge badge-success">シホ</span></h4>
-                                </div>
-                            </div>
+                            </div>                            
+                            <c:forEach var="assignees" items="${assignees}">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h4><span class="badge badge-success">${assignees.username}</span></h4>
+                                    </div>
+                                </div>                           
+                            </c:forEach>                            
                         </div>                   
                     </div>
                 </div>

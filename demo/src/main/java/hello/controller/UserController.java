@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import hello.common_method.GetUserId;
+import hello.controller_common_method.UserSignedIn;
 import hello.domain.account.*;
 import hello.service.user.UserService;
 
@@ -26,7 +26,7 @@ public class UserController{
     PasswordEncoder passwordEncoder;
     
     @Autowired
-    GetUserId getUserId;
+    UserSignedIn userSignedIn;
 
     @RequestMapping("/sign_up")
     private String signUp(){
@@ -79,13 +79,13 @@ public class UserController{
 
     @RequestMapping("/my_page")
     public String my_page(Model model){
-        model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
+        model.addAttribute("account", userService.userInfoService(userSignedIn.GetUserId()));
         return "my_page/my_page";
     }
 
     @RequestMapping("/my_page/modify/name")
     public String myPage_modify_name(Model model){
-        model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
+        model.addAttribute("account", userService.userInfoService(userSignedIn.GetUserId()));
         return "my_page/modify/name";
     }
 
@@ -94,11 +94,11 @@ public class UserController{
         if(bindingResult.hasErrors()){         
             System.out.print(bindingResult.getFieldError());
             model.addAttribute("errorMessege", bindingResult);      
-            model.addAttribute("account", userService.userInfoService(getUserId.get_user_id()));
+            model.addAttribute("account", userService.userInfoService(userSignedIn.GetUserId()));
             return "my_page/modify/name";
         }
 
-        userService.modifyNameService(getUserId.get_user_id(), accountCheck.getName());                              
+        userService.modifyNameService(userSignedIn.GetUserId(), accountCheck.getName());                              
         return "redirect:/my_page";
     }
 
@@ -121,13 +121,13 @@ public class UserController{
             return "my_page/modify/pass";
         }    
 
-        userService.modifyPassService(getUserId.get_user_id(), passwordEncoder.encode(accountCheck.getPassword()));                   
+        userService.modifyPassService(userSignedIn.GetUserId(), passwordEncoder.encode(accountCheck.getPassword()));                   
         return "redirect:/login";
     }
 
     @GetMapping("/delete_account")
     public String delete_account(){        
-        userService.userDeleteService(getUserId.get_user_id());                          
+        userService.userDeleteService(userSignedIn.GetUserId());                          
         return "redirect:/";
     }
 }

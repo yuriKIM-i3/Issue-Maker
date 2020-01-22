@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import hello.common_method.GetUserId;
+import hello.controller_common_method.UserSignedIn;
 import hello.domain.issue.Issue;
 import hello.service.IssueService;
 
@@ -20,37 +20,38 @@ public class IssueController{
     IssueService issueService;
     
     @Autowired
-    GetUserId getUserId;
+    UserSignedIn userSignedIn;
 
     @RequestMapping("/issue/list")
-    public String issue_list(Model model){           
-        model.addAttribute("my_issue_list", issueService.selectIssueById(getUserId.get_user_id()).getIssues());
+    public String issueList(Model model){           
+        model.addAttribute("my_issue_list", issueService.selectByUserId(userSignedIn.GetUserId()).getIssues());
 
         return "issue/issue_list";
     }
 
     @RequestMapping("/issue/write")
-    public String issue_write(){
+    public String issueWrite(){
         return "issue/issue_write";
     }
 
     @PostMapping("/issue/write/apply")
-    public String issue_write_apply(@Valid Issue issue, BindingResult bindingResult, Model model){
+    public String issueWriteApply(@Valid Issue issue, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){         
             model.addAttribute("errorMessege", bindingResult);
             
             return "issue/issue_write";
         }
-        issue.setUser_id(getUserId.get_user_id());
-        issueService.insertIssueEachUser(issue);
+        issue.setUser_id(userSignedIn.GetUserId());
+        issueService.insertWithUserId(issue);
 
         return "redirect:/issue/list";
     }
 
     @RequestMapping("/issue/view/{id}")
-    public String issue_view(@PathVariable int id, Model model){        
-        model.addAttribute("issue_view", issueService.viewIssueService(id));
-
+    public String issueView(@PathVariable int id, Model model){        
+        model.addAttribute("issue_view", issueService.readService(id));
+        model.addAttribute("assignees", issueService.addedAssignees(id));
+        
         return "issue/issue_view";
     }
 }

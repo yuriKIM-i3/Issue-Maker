@@ -11,7 +11,7 @@ public interface UserMapper {
     public int isUsernameExist(String email);
     public int signInEmailCheck(String email);
     public int isNameExist(String name);
-    public Account userInfo(int id);
+    public Account info(int id);
     public void modifyName(int id, String name);
     public void modifyPass(int id, String password);
     public void deleteUser(int id);

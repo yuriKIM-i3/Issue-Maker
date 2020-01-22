@@ -1,6 +1,8 @@
 package hello.domain.issue;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
+
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -8,9 +10,10 @@ import lombok.Data;
 public class Issue{
     private int id;
 
-    @NotNull(message = "title can't be blank")
+    @NotBlank(message = "title can't be blank")
     private String title;
-    @NotNull(message = "content can't be blank")
+    
+    @NotBlank(message = "content can't be blank")
     private String content;
     
     private int status;
@@ -18,4 +21,6 @@ public class Issue{
     private String create_at;
     private String update_at;
     private int user_id;
+
+    private List<Assignee> assignees;
 }

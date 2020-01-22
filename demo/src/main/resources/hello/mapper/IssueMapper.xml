@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hello.mapper.IssueMapper">
-  <insert id="insertIssueEachUser" useGeneratedKeys="true" keyProperty="id" parameterType="hello.domain.issue.Issue">
+  <insert id="insertWithUserId" useGeneratedKeys="true" keyProperty="id" parameterType="hello.domain.issue.Issue">
     INSERT INTO issue(title, content, user_id)
     VALUES(#{title}, #{content}, #{user_id})
   </insert>
-  <select id="viewIssue" resultType="hello.domain.issue.Issue">
+  <select id="read" resultType="hello.domain.issue.Issue">
     select * from issue where id = #{id}
   </select>
 
-  <resultMap id="userResultMap" type="hello.domain.account.Account">
+  <resultMap id="findWriterByUserIdResultMap" type="hello.domain.account.Account">
     <id column="id" property="id"/>    
     <collection property="issues" ofType="hello.domain.issue.Issue">
       <id property="id" column="i_id"/>
@@ -22,11 +22,28 @@
       <result property="user_id" column="user_id"/>
     </collection>
   </resultMap>       
-  <select id="selectIssueById" parameterType="int" resultMap="userResultMap">  
+  <select id="selectByUserId" parameterType="int" resultMap="findWriterByUserIdResultMap">  
     SELECT 
       u.id as id,
       i.id as i_id, i.title as title, i.content as content, i.status as status, i.viewcount as viewcount, i.create_at as create_at, i.update_at as update_at, i.user_id as user_id
     FROM user u left outer join issue i on u.id=i.user_id
     WHERE u.id = #{id}
+  </select>
+
+  <resultMap id="findAssigneeByIssueIdResultMap" type="hello.domain.issue.Issue">
+    <id column="id" property="id"/>    
+    <collection property="assignees" ofType="hello.domain.issue.Assignee">
+      <id property="id" column="a_id"/>
+      <result property="user_id" column="user_id"/>
+      <result property="username" column="username"/>
+      <result property="issue_id" column="issue_id"/>
+    </collection>
+  </resultMap> 
+  <select id="addedAssignees" parameterType="int" resultMap="findAssigneeByIssueIdResultMap">
+    SELECT 
+      i.id as id,
+      a.id as a_id, a.user_id as user_id, a.username as username, a.issue_id as issue_id
+    FROM issue i left outer join assignee a on i.id=a.issue_id
+    WHERE i.id = #{issueId}
   </select>
 </mapper> 

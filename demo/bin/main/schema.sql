@@ -31,8 +31,16 @@ CREATE TABLE issue(
     user_id INT 
 );
 
-DROP TABLE IF EXISTS related_writer;
-CREATE TABLE related_writer(
+DROP TABLE IF EXISTS user_issue;
+CREATE TABLE user_issue(
     user_id INT,
+    issue_id INT
+);
+
+DROP TABLE IF EXISTS assignee;
+CREATE TABLE assignee(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    username VARCHAR(20),
     issue_id INT
 );
